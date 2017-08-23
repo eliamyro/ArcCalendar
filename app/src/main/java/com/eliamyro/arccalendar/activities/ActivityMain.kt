@@ -1,12 +1,14 @@
-package com.eliamyro.arccalendar
+package com.eliamyro.arccalendar.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.eliamyro.arccalendar.R
 
-class ActivityMain : AppCompatActivity() {
+class ActivityMain : ActivityBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        configureToolbar()
     }
 }

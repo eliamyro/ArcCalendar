@@ -1,12 +1,12 @@
-package com.eliamyro.arccalendar
+package com.eliamyro.arccalendar.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import com.eliamyro.arccalendar.R
 
-class ActivitySplash : AppCompatActivity() {
+class ActivitySplash : ActivityBase() {
 
     // Time to pass before start the next activity.
     val SPLASH_DISPLAY_LENGTH: Long = 3000
