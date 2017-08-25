@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eliamyro.arccalendar.activities.ActivityMain">
+    tools:context="com.eliamyro.arccalendar.activities.ActivityExcavationsList">
 
     <include
         android:id="@+id/toolbar"
@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/container_fragment_main"
-        android:name="com.eliamyro.arccalendar.fragments.FragmentMain"
+        android:name="com.eliamyro.arccalendar.fragments.FragmentExcavationsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="0dp"
@@ -20,5 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 
 </android.support.constraint.ConstraintLayout>

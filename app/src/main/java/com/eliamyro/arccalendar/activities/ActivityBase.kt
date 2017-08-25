@@ -3,11 +3,14 @@ package com.eliamyro.arccalendar.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.eliamyro.arccalendar.R
 
 abstract class ActivityBase : AppCompatActivity() {
+
+    private val TAG: String = ActivityBase::class.java.simpleName
 
     var view: View? = null
 
@@ -24,9 +27,9 @@ abstract class ActivityBase : AppCompatActivity() {
 
         val toolbar: Toolbar? = view?.findViewById(R.id.toolbar)
 
-        if (toolbar != null) {
-            setSupportActionBar(toolbar)
-            if (toolbarHasBack) {
+        toolbar?.let {
+            setSupportActionBar(it)
+            if (toolbarHasBack){
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             }
         }
@@ -35,6 +38,7 @@ abstract class ActivityBase : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId){
             android.R.id.home -> onBackPressed()
+            else -> Log.d(TAG, "Default case.")
         }
 
         return super.onOptionsItemSelected(item)

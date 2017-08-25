@@ -36,11 +36,11 @@ class ActivitySplash : ActivityBase() {
         })
     }
 
-    /* Show the ActivityMain after some seconds. */
+    /* Show the ActivityExcavationsList after some seconds. */
     private fun showNextActivity(){
         Handler().postDelayed(
                 {
-                    val mIntent = Intent(this, ActivityMain::class.java)
+                    val mIntent = Intent(this, ActivityExcavationsList::class.java)
                     startActivity(mIntent)
                     finish()
                 }, SPLASH_DISPLAY_LENGTH

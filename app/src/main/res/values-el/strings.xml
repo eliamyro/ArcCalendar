@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="create">ΔΗΜΙΟΥΡΓΙΑ</string>
+    <string name="cancel">ΑΚΥΡΩΣΗ</string>
+    <string name="create_excavation">Δημιουργία ανασκαφής</string>
+    <string name="place">Τόπος</string>
+    <string name="organisation">Φορέας</string>
+</resources>
