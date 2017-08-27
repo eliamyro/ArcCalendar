@@ -10,34 +10,58 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:paddingBottom="16dp">
+
+        <ImageButton
+            android:id="@+id/ib_excavation_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:tint="@color/colorGray"
+            android:src="@drawable/ic_more_vert_white_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_excavation_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="#000"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Neo Rysio" />
 
         <TextView
             android:id="@+id/tv_organisation_title"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
             android:text="Organisation:"
+            android:textColor="@color/colorGray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_excavation_place" />
 
         <TextView
             android:id="@+id/tv_organisation_value"
+            style="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="DEYP"
+            android:textColor="@color/colorGray"
             app:layout_constraintStart_toEndOf="@+id/tv_organisation_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_excavation_place" />
 

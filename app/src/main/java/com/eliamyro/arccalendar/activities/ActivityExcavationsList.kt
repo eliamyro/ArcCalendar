@@ -9,6 +9,7 @@ class ActivityExcavationsList : ActivityBase() {
         private val TAG: String = ActivityExcavationsList::class.java.simpleName
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_excavations_list)
