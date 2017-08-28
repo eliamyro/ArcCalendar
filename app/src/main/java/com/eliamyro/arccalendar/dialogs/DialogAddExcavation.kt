@@ -1,28 +1,25 @@
 package com.eliamyro.arccalendar.dialogs
 
-import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import com.eliamyro.arccalendar.R
-import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_LISTS
-import com.eliamyro.arccalendar.models.Excavation
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.dialog_add_excavation.*
+import com.eliamyro.arccalendar.contracts.ContractDialogAddExcavation
+import com.eliamyro.arccalendar.presenters.PresenterDialogAddExcavation
 
 /**
  * Created by Elias Myronidis on 24/8/17.
  */
-class DialogAddExcavation : DialogFragment() {
+class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views {
 
     companion object {
         private val TAG: String = DialogAddExcavation::class.java.simpleName
     }
+
+    private val mPresenter: ContractDialogAddExcavation.Actions by lazy { PresenterDialogAddExcavation(this) }
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,7 +51,7 @@ class DialogAddExcavation : DialogFragment() {
 
         when(item?.itemId){
             R.id.action_save -> {
-                if (addExcavation()){
+                if (mPresenter.addExcavation()){
                     dismiss()
                 }
             }
@@ -62,27 +59,4 @@ class DialogAddExcavation : DialogFragment() {
 
         return super.onOptionsItemSelected(item)
     }
-
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = super.onCreateDialog(savedInstanceState)
-        dialog.window.requestFeature(Window.FEATURE_NO_TITLE)
-        return dialog
-    }
-
-    private fun addExcavation(): Boolean {
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
-        val excavationName: String = et_excavation_place.text.toString()
-        val organisation: String = et_organisation.text.toString()
-
-        return if (excavationName != "" && organisation != "") {
-            val excavation = Excavation(excavationName, organisation)
-            reference.child(FIREBASE_LOCATION_EXCAVATION_LISTS).push().setValue(excavation)
-            true
-        } else {
-            Toast.makeText(activity, "Please fill in all the fields.", Toast.LENGTH_LONG).show()
-            false
-        }
-    }
-
 }
