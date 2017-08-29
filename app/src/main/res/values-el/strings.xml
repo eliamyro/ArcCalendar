@@ -2,7 +2,13 @@
 <resources>
     <string name="create">ΔΗΜΙΟΥΡΓΙΑ</string>
     <string name="cancel">ΑΚΥΡΩΣΗ</string>
+    <string name="delete">ΔΙΑΓΡΑΦΗ</string>
+    <string name="save">AΠΟΘΗΚΕΥΣΗ</string>
+    <string name="menu_edit">Επεξεργασία</string>
+    <string name="menu_delete">Διαγραφή</string>
     <string name="create_excavation">Δημιουργία ανασκαφής</string>
     <string name="place">Τόπος</string>
     <string name="organisation">Φορέας</string>
+    <string name="delete_excavation">Διαγραφή της ανασκαφής;</string>
+    <string name="edit_excavation">Επεξεργασία ανασκαφής</string>
 </resources>

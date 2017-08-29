@@ -2,7 +2,8 @@ package com.eliamyro.arccalendar.dialogs
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,20 @@ class DialogEditExcavation : DialogFragment(), Views {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        val toolbar = toolbar as Toolbar?
+
+        toolbar?.title = getString(R.string.edit_excavation)
+
+        toolbar?.let {
+            (activity as AppCompatActivity).setSupportActionBar(it)
+
+            val actionBar = (activity as AppCompatActivity).supportActionBar
+            actionBar?.setDisplayHomeAsUpEnabled(true)
+            actionBar?.setHomeAsUpIndicator(R.drawable.ic_close_white_24dp)
+        }
+
+        setHasOptionsMenu(true)
+
         et_excavation_place.setText(excavation.place)
         et_organisation.setText(excavation.organization)
 

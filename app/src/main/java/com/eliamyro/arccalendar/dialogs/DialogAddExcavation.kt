@@ -1,5 +1,6 @@
 package com.eliamyro.arccalendar.dialogs
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.contracts.ContractDialogAddExcavation
 import com.eliamyro.arccalendar.presenters.PresenterDialogAddExcavation
+import kotlinx.android.synthetic.main.dialog_add_excavation.*
 
 /**
  * Created by Elias Myronidis on 24/8/17.
@@ -23,9 +25,11 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater?.inflate(R.layout.dialog_add_excavation, container, false)
+        return inflater?.inflate(R.layout.dialog_add_excavation, container, false)
+    }
 
-        val toolbar: Toolbar? = rootView?.findViewById(R.id.toolbar)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        val toolbar = toolbar as Toolbar?
 
         toolbar?.title = getString(R.string.create_excavation)
 
@@ -38,8 +42,6 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
         }
 
         setHasOptionsMenu(true)
-
-        return rootView
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -49,14 +51,22 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        when(item?.itemId){
+        when (item?.itemId) {
             R.id.action_save -> {
-                if (mPresenter.addExcavation()){
+
+                if (mPresenter.addExcavation()) {
+
+                    // Remove the fragment from the backstack
+                    fragmentManager.popBackStack()
                     dismiss()
                 }
             }
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
     }
 }
