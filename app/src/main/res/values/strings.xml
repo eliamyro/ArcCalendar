@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ArcCalendar</string>
     <string name="create">CREATE</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">Cancel</string>
     <string name="delete">DELETE</string>
     <string name="save">SAVE</string>
     <string name="menu_edit">Edit</string>
@@ -9,7 +9,9 @@
     <string name="create_excavation">Create excavation</string>
     <string name="place">Place</string>
     <string name="organisation">Organisation</string>
+    <string name="organisation_title">Organisation:</string>
     <string name="delete_excavation">Delete excavation?</string>
     <string name="edit_excavation">Edit excavation</string>
     <string name="works">WORKS</string>
+    <string name="description">Description</string>
 </resources>

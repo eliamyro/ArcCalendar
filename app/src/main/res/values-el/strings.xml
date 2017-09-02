@@ -9,7 +9,9 @@
     <string name="create_excavation">Δημιουργία ανασκαφής</string>
     <string name="place">Τόπος</string>
     <string name="organisation">Φορέας</string>
+    <string name="organisation_title">Φορέας:</string>
     <string name="delete_excavation">Διαγραφή της ανασκαφής;</string>
     <string name="edit_excavation">Επεξεργασία ανασκαφής</string>
-    <string name="works">WORKS</string>
+    <string name="works">ΕΡΓΑΣΙΕΣ</string>
+    <string name="description">Περιγραφή</string>
 </resources>

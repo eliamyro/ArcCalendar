@@ -1,5 +1,6 @@
 package com.eliamyro.arccalendar.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.eliamyro.arccalendar.R
@@ -20,6 +21,7 @@ class ActivityExcavationsList : ActivityBase(), ClickCallback {
     }
 
     override fun onItemSelected() {
-        Toast.makeText(this, "Click callbacl", Toast.LENGTH_SHORT).show()
+        val mIntent = Intent(this, ActivityWorks::class.java)
+        startActivity(mIntent)
     }
 }

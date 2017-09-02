@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:minLines="10"
                 android:gravity="top|start"
-                android:hint="Description" />
+                android:hint="@string/description" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

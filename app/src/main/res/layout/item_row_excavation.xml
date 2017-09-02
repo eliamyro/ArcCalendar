@@ -12,11 +12,12 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/ib_excavation_menu"
+            android:id="@+id/ib_excavation_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:background="@null"
             android:src="@drawable/ic_keyboard_arrow_right_32dp"
@@ -47,7 +48,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="0dp"
             android:fontFamily="sans-serif"
-            android:text="Organisation:"
+            android:text="@string/organisation_title"
             android:textColor="@color/colorGrayLight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_excavation_place" />
@@ -60,23 +61,25 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="0dp"
-            android:text="DEYP"
             android:textColor="@color/colorGrayLight"
             app:layout_constraintStart_toEndOf="@+id/tv_organisation_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_excavation_place" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_excavation_place"
+            tools:text="DEYP" />
 
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:textColor="@color/colorGrayDark"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/ib_excavation_menu"
+            app:layout_constraintEnd_toStartOf="@+id/ib_excavation_details"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_organisation_title"
             tools:text="asdfsdf sdfasldjkfalsdf asdflkjsdf lsdfsdf sklfsd hjhksdjh skdjhksjd sdhfsjk" />
@@ -97,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif-medium"

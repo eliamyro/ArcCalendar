@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ActivityExcavationsList" />
+        <activity android:name=".activities.ActivityWorks"></activity>
     </application>
 
 </manifest>
