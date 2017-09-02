@@ -19,9 +19,10 @@ class PresenterDialogAddExcavation(private val mView: Views) : ContractDialogAdd
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
         val excavationName: String = (mView as DialogAddExcavation).et_excavation_place.text.toString()
         val organisation: String = mView.et_organisation.text.toString()
+        val description: String = mView.et_description.text.toString()
 
-        return if (excavationName != "" && organisation != "") {
-            val excavation = Excavation(excavationName, organisation)
+        return if (excavationName != "" && organisation != "" && description != "") {
+            val excavation = Excavation(excavationName, organisation, description)
             reference.child(FIREBASE_LOCATION_EXCAVATION_LISTS).push().setValue(excavation)
             true
         } else {

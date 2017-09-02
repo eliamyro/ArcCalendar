@@ -5,5 +5,10 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorGray">#555</color>
+
+    <color name="colorGrayLight">#919191</color>
+    <color name="colorGrayMedium">#696969</color>
+    <color name="colorGrayDark">#555</color>
+    <color name="colorGrayLine">#F0F0F0</color>
+    <color name="color_action">#4688F1</color>
 </resources>

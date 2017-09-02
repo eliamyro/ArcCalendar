@@ -12,7 +12,8 @@ class ExcavationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bindExcavationView(excavation: Excavation){
         itemView.tv_excavation_place.text = excavation.place
-        itemView.tv_organisation_value.text = excavation.organization
+        itemView.tv_organisation_value.text = excavation.organisation
+        itemView.tv_description.text = excavation.description
     }
 
 }

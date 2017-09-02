@@ -6,14 +6,16 @@ import android.os.Parcelable
 /**
  * Created by Elias Myronidis on 24/8/17.
  */
-data class Excavation(var place: String = "", var organization: String = ""): Parcelable {
+data class Excavation(val place: String = "", val organisation: String = "", val description: String = ""): Parcelable {
     constructor(parcel: Parcel) : this(
+            parcel.readString(),
             parcel.readString(),
             parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(place)
-        parcel.writeString(organization)
+        parcel.writeString(organisation)
+        parcel.writeString(description)
     }
 
     override fun describeContents(): Int {

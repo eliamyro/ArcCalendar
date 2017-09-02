@@ -41,6 +41,8 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
             actionBar?.setHomeAsUpIndicator(R.drawable.ic_close_white_24dp)
         }
 
+        view?.setOnClickListener({})
+
         setHasOptionsMenu(true)
     }
 
@@ -64,9 +66,5 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDismiss(dialog: DialogInterface?) {
-        super.onDismiss(dialog)
     }
 }

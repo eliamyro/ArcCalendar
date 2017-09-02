@@ -6,14 +6,14 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import android.widget.Toast
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_LISTS
+import com.eliamyro.arccalendar.common.KEY_EXCAVATION
+import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.inTransaction
 import com.eliamyro.arccalendar.dialogs.DialogAddExcavation
-import com.eliamyro.arccalendar.dialogs.DialogEditExcavation
-import com.eliamyro.arccalendar.dialogs.DialogRemoveExcavation
+import com.eliamyro.arccalendar.dialogs.DialogExcavationDetails
+import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.Excavation
 import com.eliamyro.arccalendar.viewHolders.ExcavationHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -29,10 +29,7 @@ class FragmentExcavationsList : Fragment() {
 
     companion object {
         private val TAG: String = FragmentExcavationsList::class.java.simpleName
-        private const val KEY_EXCAVATION: String = "excavation"
-        private const val REMOVE_EXCAVATION_DIALOG: String = "remove_excavation_dialog"
     }
-
 
     private var mAdapter: FirebaseRecyclerAdapter<Excavation, ExcavationHolder>? = null
 
@@ -61,58 +58,32 @@ class FragmentExcavationsList : Fragment() {
                 val key: String = getRef(position).key
 
                 holder.bindExcavationView(excavation)
-                holder.itemView.setOnClickListener { Toast.makeText(activity, holder.adapterPosition.toString(), Toast.LENGTH_SHORT).show() }
-                holder.itemView.ib_excavation_menu.setOnClickListener {
-                    showPopUpMenu(holder.itemView.ib_excavation_menu, key, holder.adapterPosition)
-                }
+                holder.itemView.setOnClickListener { showExcavationDetailsDialog(key, holder.adapterPosition) }
+                holder.itemView.tv_works.setOnClickListener { (activity as ClickCallback).onItemSelected() }
             }
         }
 
         rvExcavations.adapter = mAdapter
     }
 
-    private fun showPopUpMenu(view: View, itemId: String?, position: Int) {
-        val popup = PopupMenu(view.context, view)
-        val inflater = popup.menuInflater
-        inflater.inflate(R.menu.pop_up_menu_excavation, popup.menu)
-
-        popup.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.action_delete -> {
-                    showRemoveExcavationDialog(itemId)
-                }
-
-                R.id.action_edit -> {
-                    showEditExcavationDialog(mAdapter?.getItem(position))
-                }
-            }
-            true
-        }
-        popup.show()
-    }
-
     private fun showAddExcavationDialog() {
         val dialog = DialogAddExcavation()
+
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
     }
 
-    private fun showRemoveExcavationDialog(itemId: String?) {
-        val dialog = DialogRemoveExcavation()
-        val bundle = Bundle()
-        bundle.putString("item_id", itemId)
-        dialog.arguments = bundle
 
-        dialog.show(fragmentManager, REMOVE_EXCAVATION_DIALOG)
-    }
-
-    private fun showEditExcavationDialog(excavation: Excavation?) {
-        val dialog = DialogEditExcavation()
+    private fun showExcavationDetailsDialog(key: String?, position: Int) {
+        val dialog = DialogExcavationDetails()
         val bundle = Bundle()
+        val excavation: Excavation? = mAdapter?.getItem(position)
         bundle.putParcelable(KEY_EXCAVATION, excavation)
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, key)
         dialog.arguments = bundle
 
         fragmentManager.inTransaction({ replace(android.R.id.content, dialog) })
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

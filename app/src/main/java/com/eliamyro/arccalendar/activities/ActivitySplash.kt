@@ -9,7 +9,7 @@ import com.eliamyro.arccalendar.R
 class ActivitySplash : ActivityBase() {
 
     // Time to pass before start the next activity.
-    val SPLASH_DISPLAY_LENGTH: Long = 3000
+    private val SPLASH_DISPLAY_LENGTH: Long = 3000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
