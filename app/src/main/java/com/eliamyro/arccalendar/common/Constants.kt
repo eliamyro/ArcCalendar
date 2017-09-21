@@ -5,6 +5,7 @@ package com.eliamyro.arccalendar.common
  */
 
 const val FIREBASE_LOCATION_EXCAVATION_LISTS = "excavationLists"
+const val FIREBASE_LOCATION_EXCAVATION_WORKS = "excavationWorks"
 
 
 /**
@@ -22,6 +23,7 @@ const val FIREBASE_PROPERTY_EXCAVATION_DESCRIPTION = "description"
 
 const val KEY_EXCAVATION: String = "excavation"
 const val KEY_EXCAVATION_ITEM_ID = "excavation_item_id"
+const val KEY_WORK_ITEM_ID = "work_item_id"
 
 
 /**

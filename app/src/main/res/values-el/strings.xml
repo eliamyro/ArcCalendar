@@ -13,5 +13,8 @@
     <string name="delete_excavation">Διαγραφή της ανασκαφής;</string>
     <string name="edit_excavation">Επεξεργασία ανασκαφής</string>
     <string name="works">ΕΡΓΑΣΙΕΣ</string>
+    <string name="works_label">Εργασίες</string>
     <string name="description">Περιγραφή</string>
+    <string name="create_work">Δημιουργία εργασίας</string>
+    <string name="director">Διευθυντής ανασκαφής</string>
 </resources>

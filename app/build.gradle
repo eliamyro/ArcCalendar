@@ -37,6 +37,10 @@ dependencies {
     implementation "com.android.support:cardview-v7:$support_version"
     implementation "com.android.support:design:$support_version"
     implementation 'com.firebaseui:firebase-ui-database:2.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
+    implementation 'com.github.Eddydpyl:AndroidTagGroup:1.7.1'
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
 }
 
 apply plugin: 'com.google.gms.google-services'

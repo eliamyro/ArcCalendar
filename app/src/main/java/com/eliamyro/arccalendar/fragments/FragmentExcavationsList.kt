@@ -1,5 +1,6 @@
 package com.eliamyro.arccalendar.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -32,6 +33,7 @@ class FragmentExcavationsList : Fragment() {
     }
 
     private var mAdapter: FirebaseRecyclerAdapter<Excavation, ExcavationHolder>? = null
+    private var mCallbackListener: ClickCallback? = null
 
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,9 +45,9 @@ class FragmentExcavationsList : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         // Fab onClickListener
-        fabAddExcavation.setOnClickListener { showAddExcavationDialog() }
+        fab_add_excavation.setOnClickListener { showAddExcavationDialog() }
 
-        rvExcavations.layoutManager = LinearLayoutManager(activity)
+        rv_excavations.layoutManager = LinearLayoutManager(activity)
 
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_EXCAVATION_LISTS)
         mAdapter = object : FirebaseRecyclerAdapter<Excavation, ExcavationHolder>(
@@ -55,15 +57,30 @@ class FragmentExcavationsList : Fragment() {
                 reference) {
 
             override fun populateViewHolder(holder: ExcavationHolder, excavation: Excavation, position: Int) {
-                val key: String = getRef(position).key
+                val excavationId: String = getRef(position).key
 
                 holder.bindExcavationView(excavation)
-                holder.itemView.setOnClickListener { showExcavationDetailsDialog(key, holder.adapterPosition) }
-                holder.itemView.tv_works.setOnClickListener { (activity as ClickCallback).onItemSelected() }
+                holder.itemView.setOnClickListener { showExcavationDetailsDialog(excavationId, holder.adapterPosition) }
+                holder.itemView.tv_works.setOnClickListener { mCallbackListener?.onItemSelected(excavationId) }
             }
         }
 
-        rvExcavations.adapter = mAdapter
+        rv_excavations.adapter = mAdapter
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        if(context is ClickCallback){
+            mCallbackListener = context
+        } else {
+            throw RuntimeException(context!!.toString() + " must implement ClickCallback")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        mCallbackListener = null
     }
 
     private fun showAddExcavationDialog() {
@@ -73,12 +90,12 @@ class FragmentExcavationsList : Fragment() {
     }
 
 
-    private fun showExcavationDetailsDialog(key: String?, position: Int) {
+    private fun showExcavationDetailsDialog(excavationId: String?, position: Int) {
         val dialog = DialogExcavationDetails()
         val bundle = Bundle()
         val excavation: Excavation? = mAdapter?.getItem(position)
         bundle.putParcelable(KEY_EXCAVATION, excavation)
-        bundle.putString(KEY_EXCAVATION_ITEM_ID, key)
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationId)
         dialog.arguments = bundle
 
         fragmentManager.inTransaction({ replace(android.R.id.content, dialog) })

@@ -2,8 +2,8 @@ package com.eliamyro.arccalendar.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import com.eliamyro.arccalendar.R
+import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.listeners.ClickCallback
 
 class ActivityExcavationsList : ActivityBase(), ClickCallback {
@@ -20,8 +20,10 @@ class ActivityExcavationsList : ActivityBase(), ClickCallback {
         configureToolbar()
     }
 
-    override fun onItemSelected() {
-        val mIntent = Intent(this, ActivityWorks::class.java)
+    override fun onItemSelected(excavationId: String, workId: String) {
+        val mIntent = Intent(this, ActivityWorksList::class.java)
+        mIntent.putExtra(KEY_EXCAVATION_ITEM_ID, excavationId)
         startActivity(mIntent)
+        overridePendingTransition(R.anim.right_in, R.anim.left_out)
     }
 }

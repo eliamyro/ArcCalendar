@@ -27,8 +27,8 @@ import com.google.firebase.database.DataSnapshot
 
 class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavation.Views {
 
-    private val mPresenter: ContractDialogDetailsExcavation.Actions by lazy { PresenterDialogExcavationDetails()}
-    var excavation: Excavation? = null
+    private val mPresenter: ContractDialogDetailsExcavation.Actions by lazy { PresenterDialogExcavationDetails(this)}
+    var mExcavation: Excavation? = null
     private val itemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
 
     private var mExcavationItemRef: DatabaseReference? = null
@@ -41,19 +41,17 @@ class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavatio
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        excavation = arguments.getParcelable<Excavation?>(KEY_EXCAVATION)
-        mExcavationItemRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_EXCAVATION_LISTS + "/" + itemId)
+        mExcavation = arguments.getParcelable<Excavation?>(KEY_EXCAVATION)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.dialog_excavation_details, container, false)
     }
 
-
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         val toolbar = toolbar as Toolbar?
 
-        toolbar?.title = excavation?.place
+        toolbar?.title = mExcavation?.place
 
         toolbar?.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
@@ -68,24 +66,23 @@ class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavatio
 
         updateFields()
 
-        mExcavationRefListener = mExcavationItemRef?.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                excavation = dataSnapshot.getValue<Excavation>(Excavation::class.java)
-                updateFields()
-
-                if (excavation == null) {
-                    fragmentManager?.popBackStack()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {}
-        })
+        // Load the details of the excavation item.
+        mPresenter.loadExcavationDetails(itemId)
     }
 
     private fun updateFields(){
-        tv_excavation_place?.text = excavation?.place
-        tv_organisation_value?.text = excavation?.organisation
-        tv_description?.text = excavation?.description
+        tv_excavation_place?.text = mExcavation?.place
+        tv_organisation_value?.text = mExcavation?.organisation
+        tv_description?.text = mExcavation?.description
+    }
+
+    override fun updateExcavation(excavation: Excavation?) {
+        mExcavation = excavation
+        updateFields()
+    }
+
+    override fun removeFragment() {
+        this.fragmentManager.popBackStack()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -97,7 +94,7 @@ class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavatio
 
         when(item?.itemId){
             R.id.action_delete -> showDeleteExcavationDialog(itemId)
-            R.id.action_edit -> showEditExcavationDialog(excavation)
+            R.id.action_edit -> showEditExcavationDialog(mExcavation)
         }
 
         return super.onOptionsItemSelected(item)

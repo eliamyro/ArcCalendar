@@ -1,11 +1,9 @@
 package com.eliamyro.arccalendar.dialogs
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.contracts.ContractDialogAddExcavation
@@ -48,7 +46,7 @@ class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views 
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         menu?.clear()
-        activity.menuInflater.inflate(R.menu.menu_add_excavation, menu)
+        activity.menuInflater.inflate(R.menu.menu_add_excavation_work, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
