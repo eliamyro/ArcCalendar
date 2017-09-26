@@ -72,14 +72,14 @@ class ActivityWorkDetails : ActivityBase() {
 
             val updatedItemToAddMap = HashMap<String, Any>()
             val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
-                    .child(FIREBASE_LOCATION_WORK_LOCATIONS).child(workItemId)
+                    .child(FIREBASE_LOCATION_WORK_LOCATIONS).child(excavationItemId).child(workItemId)
 
             /* Save push() to maintain same random Id */
             val newRef = itemsRef.push()
             val itemId = newRef.key
 
             val itemToAdd = ObjectMapper().convertValue(workLocation, Map::class.java) as HashMap<*, *>
-            updatedItemToAddMap.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$itemId", itemToAdd)
+            updatedItemToAddMap.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$workItemId/$itemId", itemToAdd)
 
             reference.updateChildren(updatedItemToAddMap)
         }
@@ -99,7 +99,8 @@ class ActivityWorkDetails : ActivityBase() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item?.itemId
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_delete_work) {
+            // TODO: Implement delete work
             return true
         }
 

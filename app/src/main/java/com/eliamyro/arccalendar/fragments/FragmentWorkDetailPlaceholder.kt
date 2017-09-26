@@ -23,11 +23,21 @@ class FragmentWorkDetailPlaceholder : Fragment() {
                 1 -> {
                     fragment = FragmentWorkInfo()
                     val bundle = Bundle()
-                    bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
-                    bundle.putString(KEY_WORK_ITEM_ID, workItemId)
+                    with(bundle){
+                        putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
+                        putString(KEY_WORK_ITEM_ID, workItemId)
+                    }
                     fragment.arguments = bundle
                 }
-                2 -> fragment = FragmentWorkLocations()
+                2 -> {
+                    fragment = FragmentWorkLocations()
+                    val bundle = Bundle()
+                    with(bundle){
+                        putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
+                        putString(KEY_WORK_ITEM_ID, workItemId)
+                    }
+                    fragment.arguments = bundle
+                }
             }
             
             return fragment

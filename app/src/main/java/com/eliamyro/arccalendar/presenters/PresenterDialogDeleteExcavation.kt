@@ -21,8 +21,12 @@ class PresenterDialogDeleteExcavation : Actions {
 
         val removeData: HashMap<String, Any?> = HashMap()
         removeData.put("/$FIREBASE_LOCATION_EXCAVATION_LISTS/$itemId", null)
-        removeData.put("/$FIREBASE_LOCATION_EXCAVATION_WORKS/$itemId", null)
-        removeData.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$itemId", null)
+        if (FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_EXCAVATION_WORKS) != null) {
+            removeData.put("/$FIREBASE_LOCATION_EXCAVATION_WORKS/$itemId", null)
+        }
+        if (FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_WORK_LOCATIONS) != null) {
+            removeData.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$itemId", null)
+        }
 
         firebaseRef.updateChildren(removeData)
         { databaseError, _ -> databaseError?.let { Log.e(TAG, "Error" + it.message) } }

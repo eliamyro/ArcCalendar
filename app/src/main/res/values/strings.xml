@@ -6,6 +6,7 @@
     <string name="save">SAVE</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
+    <string name="menu_delete_all">Delete All</string>
     <string name="create_excavation">Create excavation</string>
     <string name="place">Place</string>
     <string name="organisation">Organisation</string>
