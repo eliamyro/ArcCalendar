@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_row_work.view.*
  */
 class WorkHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    fun bindWorkView(work: Work){
-        itemView.tv_work_description.text = work.description
+    fun bindWorkView(work: Work) = with(itemView){
+        tv_work_description.text = work.description
     }
 }

@@ -3,6 +3,7 @@ package com.eliamyro.arccalendar.presenters
 import android.util.Log
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_LISTS
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_WORKS
+import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteExcavation.Actions
 import com.google.firebase.database.FirebaseDatabase
 
@@ -21,6 +22,7 @@ class PresenterDialogDeleteExcavation : Actions {
         val removeData: HashMap<String, Any?> = HashMap()
         removeData.put("/$FIREBASE_LOCATION_EXCAVATION_LISTS/$itemId", null)
         removeData.put("/$FIREBASE_LOCATION_EXCAVATION_WORKS/$itemId", null)
+        removeData.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$itemId", null)
 
         firebaseRef.updateChildren(removeData)
         { databaseError, _ -> databaseError?.let { Log.e(TAG, "Error" + it.message) } }

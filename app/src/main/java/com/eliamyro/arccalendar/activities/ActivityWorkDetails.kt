@@ -16,9 +16,15 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.eliamyro.arccalendar.R
+import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_WORKS
+import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
 import com.eliamyro.arccalendar.fragments.FragmentWorkDetailPlaceholder
+import com.eliamyro.arccalendar.models.WorkLocation
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_work_tabs.*
 import kotlinx.android.synthetic.main.fragment_activity_work_tabs.view.*
 
@@ -58,8 +64,24 @@ class ActivityWorkDetails : ActivityBase() {
 
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+            val title = "Work Title"
+            val description = "Work description"
+
+            val workLocation = WorkLocation(title, description)
+
+            val updatedItemToAddMap = HashMap<String, Any>()
+            val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
+                    .child(FIREBASE_LOCATION_WORK_LOCATIONS).child(workItemId)
+
+            /* Save push() to maintain same random Id */
+            val newRef = itemsRef.push()
+            val itemId = newRef.key
+
+            val itemToAdd = ObjectMapper().convertValue(workLocation, Map::class.java) as HashMap<*, *>
+            updatedItemToAddMap.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$itemId", itemToAdd)
+
+            reference.updateChildren(updatedItemToAddMap)
         }
 
     }

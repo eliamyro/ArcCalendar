@@ -6,6 +6,7 @@ package com.eliamyro.arccalendar.common
 
 const val FIREBASE_LOCATION_EXCAVATION_LISTS = "excavationLists"
 const val FIREBASE_LOCATION_EXCAVATION_WORKS = "excavationWorks"
+const val FIREBASE_LOCATION_WORK_LOCATIONS = "workLocations"
 
 
 /**

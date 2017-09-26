@@ -1,6 +1,5 @@
 package com.eliamyro.arccalendar.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -10,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
-import com.eliamyro.arccalendar.contracts.ContractDialogDetailsExcavation
 import com.eliamyro.arccalendar.contracts.ContractFragmentWorkInfo
 import com.eliamyro.arccalendar.models.Work
-import com.eliamyro.arccalendar.presenters.PresenterDialogExcavationDetails
 import com.eliamyro.arccalendar.presenters.PresenterFragmentWorkInfo
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_work_info.*
@@ -34,11 +31,6 @@ class FragmentWorkInfo: Fragment(), ContractFragmentWorkInfo.Views {
 
     private val mPresenter: ContractFragmentWorkInfo.Actions by lazy { PresenterFragmentWorkInfo(this) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_work_info, container, false)
     }
@@ -47,13 +39,10 @@ class FragmentWorkInfo: Fragment(), ContractFragmentWorkInfo.Views {
         mPresenter.loadWorkInfo(reference)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun displayInfo(work: Work?) {
-        val directorsList = work?.directorsList
-        tg_directors.setTags(directorsList)
+        tg_directors.setTags(work?.directorsList)
+        tg_archaelogists.setTags(work?.archaeologistsList)
+        tg_students.setTags(work?.studentsList)
     }
 
     override fun removeFragment() {

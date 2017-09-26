@@ -5,31 +5,39 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_WORKS
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.inTransaction
+import com.eliamyro.arccalendar.contracts.ContractFragmentWorksList
 import com.eliamyro.arccalendar.dialogs.DialogAddWork
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.Work
+import com.eliamyro.arccalendar.presenters.PresenterFragmentWorksList
 import com.eliamyro.arccalendar.viewHolders.WorkHolder
+import com.firebase.ui.database.ChangeEventListener
 import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_works_list.*
 
-class FragmentWorksList : Fragment() {
+class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
 
     private val mExcavationId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private var mAdapter: FirebaseRecyclerAdapter<Work, WorkHolder>? = null
-
     private var mCallbackListener: ClickCallback? = null
+
+    private val mPresenter: ContractFragmentWorksList.Actions by lazy { PresenterFragmentWorksList() }
 
     companion object {
         private val TAG: String = FragmentWorksList::class.java.simpleName
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -75,6 +83,22 @@ class FragmentWorksList : Fragment() {
     override fun onDetach() {
         super.onDetach()
         mCallbackListener = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_works_list, menu)
+
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+
+        when(item?.itemId){
+            R.id.action_works_list_delete -> mPresenter.deleteWorks(mExcavationId)
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showAddWorkDialog(){

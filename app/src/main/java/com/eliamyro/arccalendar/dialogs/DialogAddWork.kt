@@ -50,8 +50,6 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger 
         view?.setOnClickListener({})
 
         setHasOptionsMenu(true)
-        
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

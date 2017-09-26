@@ -14,10 +14,6 @@ abstract class ActivityBase : AppCompatActivity() {
 
     var view: View? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun setContentView(layoutResId: Int) {
         view = layoutInflater.inflate(layoutResId, null)
         super.setContentView(view)

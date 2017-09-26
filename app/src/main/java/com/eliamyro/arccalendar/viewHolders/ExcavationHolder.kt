@@ -10,10 +10,10 @@ import kotlinx.android.synthetic.main.item_row_excavation.view.*
  */
 class ExcavationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    fun bindExcavationView(excavation: Excavation){
-        itemView.tv_excavation_place.text = excavation.place
-        itemView.tv_organisation_value.text = excavation.organisation
-        itemView.tv_description.text = excavation.description
+    fun bindExcavationView(excavation: Excavation) = with(itemView){
+        tv_excavation_place.text = excavation.place
+        tv_organisation_value.text = excavation.organisation
+        tv_description.text = excavation.description
     }
 
 }
