@@ -20,7 +20,7 @@ class ActivityExcavationsList : ActivityBase(), ClickCallback {
         configureToolbar()
     }
 
-    override fun onItemSelected(excavationId: String, workId: String) {
+    override fun onItemSelected(excavationId: String, workId: String, workLocationId: String) {
         val mIntent = Intent(this, ActivityWorksList::class.java)
         mIntent.putExtra(KEY_EXCAVATION_ITEM_ID, excavationId)
         startActivity(mIntent)

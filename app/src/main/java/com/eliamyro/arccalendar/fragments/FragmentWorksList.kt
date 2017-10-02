@@ -52,7 +52,7 @@ class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
 
         rv_works.layoutManager = LinearLayoutManager(activity)
 
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_EXCAVATION_WORKS +"/"+mExcavationId)
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("$FIREBASE_LOCATION_EXCAVATION_WORKS/$mExcavationId")
         mAdapter = object : FirebaseRecyclerAdapter<Work, WorkHolder>(
                 Work::class.java,
                 R.layout.item_row_work,

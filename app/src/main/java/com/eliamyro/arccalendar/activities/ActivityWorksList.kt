@@ -30,7 +30,7 @@ class ActivityWorksList : ActivityBase(), ClickCallback {
         overridePendingTransition(R.anim.left_in, R.anim.right_out)
     }
 
-    override fun onItemSelected(excavationId: String, workId: String) {
+    override fun onItemSelected(excavationId: String, workId: String, workLocationId: String) {
         Log.d("TAG", "ExcavationId: $mExcavationId, WorkId: $workId")
 
         val mIntent = Intent(this, ActivityWorkDetails::class.java)

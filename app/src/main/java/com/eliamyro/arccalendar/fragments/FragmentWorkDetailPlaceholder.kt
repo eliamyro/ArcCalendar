@@ -30,7 +30,7 @@ class FragmentWorkDetailPlaceholder : Fragment() {
                     fragment.arguments = bundle
                 }
                 2 -> {
-                    fragment = FragmentWorkLocations()
+                    fragment = FragmentWorkLocationsList()
                     val bundle = Bundle()
                     with(bundle){
                         putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)

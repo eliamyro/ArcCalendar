@@ -1,5 +1,6 @@
 package com.eliamyro.arccalendar.activities
 
+import android.content.Intent
 import android.support.design.widget.TabLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -16,11 +18,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.eliamyro.arccalendar.R
-import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_WORKS
-import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
-import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
-import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
+import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.fragments.FragmentWorkDetailPlaceholder
+import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.WorkLocation
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.firebase.database.DatabaseReference
@@ -28,7 +28,11 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_work_tabs.*
 import kotlinx.android.synthetic.main.fragment_activity_work_tabs.view.*
 
-class ActivityWorkDetails : ActivityBase() {
+class ActivityWorkDetails : ActivityBase(), ClickCallback {
+
+    companion object {
+        private val TAG: String = ActivityWorkDetails::class.java.simpleName
+    }
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -61,29 +65,6 @@ class ActivityWorkDetails : ActivityBase() {
         view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(view_pager))
 
-
-
-        fab.setOnClickListener { view ->
-            val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
-            val title = "Work Title"
-            val description = "Work description"
-
-            val workLocation = WorkLocation(title, description)
-
-            val updatedItemToAddMap = HashMap<String, Any>()
-            val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
-                    .child(FIREBASE_LOCATION_WORK_LOCATIONS).child(excavationItemId).child(workItemId)
-
-            /* Save push() to maintain same random Id */
-            val newRef = itemsRef.push()
-            val itemId = newRef.key
-
-            val itemToAdd = ObjectMapper().convertValue(workLocation, Map::class.java) as HashMap<*, *>
-            updatedItemToAddMap.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$workItemId/$itemId", itemToAdd)
-
-            reference.updateChildren(updatedItemToAddMap)
-        }
-
     }
 
 
@@ -105,6 +86,16 @@ class ActivityWorkDetails : ActivityBase() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onItemSelected(excavationId: String, workId: String, workLocationId: String) {
+        Log.d(TAG, "excId: $excavationId, workId: $workId, WorkLocId: $workLocationId" )
+
+        val intent = Intent(this, ActivityFindingsList::class.java)
+        intent.putExtra(KEY_EXCAVATION_ITEM_ID, excavationId)
+        intent.putExtra(KEY_WORK_ITEM_ID, workItemId)
+        intent.putExtra(KEY_WORK_LOCATION_ITEM_ID, workLocationId)
+        startActivity(intent)
     }
 
     override fun finish() {
@@ -133,8 +124,8 @@ class ActivityWorkDetails : ActivityBase() {
 
         override fun getPageTitle(position: Int): CharSequence {
             when (position) {
-                0 -> return "Info"
-                1 -> return "Details"
+                0 -> return getString(R.string.info)
+                1 -> return getString(R.string.locations)
                 else -> return ""
             }
         }

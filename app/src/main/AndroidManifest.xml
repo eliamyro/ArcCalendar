@@ -23,7 +23,8 @@
         <activity
             android:name=".activities.ActivityWorkDetails"
             android:label="@string/title_activity_work_tabs"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.ActivityFindingsList"></activity>
     </application>
 
 </manifest>

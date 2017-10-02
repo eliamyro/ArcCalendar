@@ -17,4 +17,6 @@
     <string name="description">Περιγραφή</string>
     <string name="create_work">Δημιουργία εργασίας</string>
     <string name="director">Διευθυντής ανασκαφής</string>
+    <string name="info">Πληροφορίες</string>
+    <string name="locations">Τοποθεσίες</string>
 </resources>

@@ -6,5 +6,5 @@ package com.eliamyro.arccalendar.listeners
  */
 interface ClickCallback {
 
-    fun onItemSelected(excavationId: String = "", workId: String = "")
+    fun onItemSelected(excavationId: String = "", workId: String = "", workLocationId: String = "")
 }
