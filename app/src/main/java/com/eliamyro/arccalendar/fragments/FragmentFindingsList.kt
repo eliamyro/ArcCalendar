@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.dialogs.DialogAddFinding
+import com.eliamyro.arccalendar.dialogs.DialogFindingDetails
 import com.eliamyro.arccalendar.models.Finding
 import com.eliamyro.arccalendar.viewHolders.FindingHolder
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -52,11 +53,23 @@ class FragmentFindingsList: Fragment() {
                 val findingItemId: String = getRef(position).key
 
                 holder.bindFindingView(finding)
-//                holder.itemView.setOnClickListener { mCallbackListener?.onItemSelected(excavationItemId, workItemId, workLocationItemId) }
+                holder.itemView.setOnClickListener { showFindingDetailsDialog(findingItemId) }
             }
         }
 
         rv_findings.adapter = mAdapter
+    }
+
+    private fun showFindingDetailsDialog(findingItemId: String){
+        val dialog = DialogFindingDetails()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, workItemId)
+        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
+        bundle.putString(KEY_FINDING_ITEM_ID, findingItemId)
+        dialog.arguments = bundle
+
+        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
     }
 
     private fun showAddFindingDialog(){
