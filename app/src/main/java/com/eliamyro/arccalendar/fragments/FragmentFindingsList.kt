@@ -53,20 +53,22 @@ class FragmentFindingsList: Fragment() {
                 val findingItemId: String = getRef(position).key
 
                 holder.bindFindingView(finding)
-                holder.itemView.setOnClickListener { showFindingDetailsDialog(findingItemId) }
+                holder.itemView.setOnClickListener { showFindingDetailsDialog(findingItemId, holder.adapterPosition) }
             }
         }
 
         rv_findings.adapter = mAdapter
     }
 
-    private fun showFindingDetailsDialog(findingItemId: String){
+    private fun showFindingDetailsDialog(findingItemId: String, position: Int){
+        val finding: Finding? = mAdapter?.getItem(position)
         val dialog = DialogFindingDetails()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
         bundle.putString(KEY_WORK_ITEM_ID, workItemId)
         bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
         bundle.putString(KEY_FINDING_ITEM_ID, findingItemId)
+        bundle.putParcelable(KEY_FINDING, finding)
         dialog.arguments = bundle
 
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }

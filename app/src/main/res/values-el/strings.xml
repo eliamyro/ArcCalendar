@@ -19,4 +19,5 @@
     <string name="director">Διευθυντής ανασκαφής</string>
     <string name="info">Πληροφορίες</string>
     <string name="locations">Τοποθεσίες</string>
+    <string name="delete_finding">Διαγραφή του ευρήματος;</string>
 </resources>

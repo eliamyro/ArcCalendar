@@ -11,13 +11,9 @@ import com.eliamyro.arccalendar.contracts.ContractDialogDetailsExcavation
 import com.eliamyro.arccalendar.models.Excavation
 import com.eliamyro.arccalendar.presenters.PresenterDialogExcavationDetails
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.dialog_excavation_details.*
-import com.google.firebase.database.DatabaseError
-import android.util.Log
 import com.eliamyro.arccalendar.common.*
-import com.google.firebase.database.DataSnapshot
 
 
 /**
@@ -86,7 +82,7 @@ class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavatio
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_details_excavation, menu)
+        inflater?.inflate(R.menu.menu_details, menu)
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
