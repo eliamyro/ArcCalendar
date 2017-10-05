@@ -7,13 +7,10 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.*
 import com.eliamyro.arccalendar.R
-import com.eliamyro.arccalendar.contracts.ContractDialogDetailsExcavation
 import com.eliamyro.arccalendar.models.Excavation
-import com.eliamyro.arccalendar.presenters.PresenterDialogExcavationDetails
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.dialog_excavation_details.*
 import com.eliamyro.arccalendar.common.*
+import com.google.firebase.database.*
 
 
 /**
@@ -21,9 +18,8 @@ import com.eliamyro.arccalendar.common.*
  */
 
 
-class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavation.Views {
+class DialogExcavationDetails : DialogFragment() {
 
-    private val mPresenter: ContractDialogDetailsExcavation.Actions by lazy { PresenterDialogExcavationDetails(this)}
     var mExcavation: Excavation? = null
     private val itemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
 
@@ -63,22 +59,30 @@ class DialogExcavationDetails : DialogFragment(), ContractDialogDetailsExcavatio
         updateFields()
 
         // Load the details of the excavation item.
-        mPresenter.loadExcavationDetails(itemId)
+       loadExcavationDetails(itemId)
+    }
+
+    private fun loadExcavationDetails(itemId: String){
+        mExcavationItemRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_EXCAVATION_LISTS + "/" + itemId)
+        mExcavationRefListener = mExcavationItemRef?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                mExcavation = dataSnapshot.getValue<Excavation>(Excavation::class.java)
+                updateFields()
+
+                if (mExcavation == null) {
+                    fragmentManager?.popBackStack()
+                }
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
     }
 
     private fun updateFields(){
         tv_excavation_place?.text = mExcavation?.place
         tv_organisation_value?.text = mExcavation?.organisation
         tv_description?.text = mExcavation?.description
-    }
-
-    override fun updateExcavation(excavation: Excavation?) {
-        mExcavation = excavation
-        updateFields()
-    }
-
-    override fun removeFragment() {
-        this.fragmentManager.popBackStack()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

@@ -8,32 +8,20 @@ import android.support.v7.widget.Toolbar
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
-import com.eliamyro.arccalendar.contracts.ContractDialogDetailsFinding
 import com.eliamyro.arccalendar.models.Finding
-import com.eliamyro.arccalendar.presenters.PresenterDialogFindingDetails
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.dialog_finding_details.*
 
 /**
  * Created by Elias Myronidis on 3/10/17.
  */
-class DialogFindingDetails: DialogFragment(), ContractDialogDetailsFinding.Views {
-    override fun removeFragment() {
-        this.fragmentManager.popBackStack()
-    }
-
-    override fun updateFinding(finding: Finding?) {
-        mFinding = finding
-        updateFields()
-    }
+class DialogFindingDetails: DialogFragment() {
 
     private val mExcavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private val mWorkItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }
     private val mWorkLocationItemId: String by lazy { arguments.getString(KEY_WORK_LOCATION_ITEM_ID) }
     private val mFindingItemId: String by lazy { arguments.getString(KEY_FINDING_ITEM_ID) }
     private var mFinding: Finding? = null
-    private val mPresenter: ContractDialogDetailsFinding.Actions by lazy { PresenterDialogFindingDetails(this)}
     private var mFindingItemRef: DatabaseReference? = null
     private var mFindingRefListener: ValueEventListener? = null
 
@@ -66,9 +54,23 @@ class DialogFindingDetails: DialogFragment(), ContractDialogDetailsFinding.Views
 
         updateFields()
 
+        loadFindingDetails()
+    }
+
+    private fun loadFindingDetails() {
         val findingPath = "$FIREBASE_LOCATION_FINDINGS/$mExcavationItemId/$mWorkItemId/$mWorkLocationItemId/$mFindingItemId"
-        // Load the details of the findings item.
-        mPresenter.loadFindingDetails(findingPath)
+        mFindingItemRef = FirebaseDatabase.getInstance().reference.child(findingPath)
+        mFindingRefListener = mFindingItemRef?.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                mFinding = dataSnapshot.getValue<Finding>(Finding::class.java)
+
+                if (mFinding == null) {
+                    fragmentManager?.popBackStack()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {}
+        })
     }
 
     private fun updateFields(){
