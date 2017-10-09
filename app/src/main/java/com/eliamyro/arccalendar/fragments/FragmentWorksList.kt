@@ -12,6 +12,7 @@ import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.inTransaction
 import com.eliamyro.arccalendar.contracts.ContractFragmentWorksList
 import com.eliamyro.arccalendar.dialogs.DialogAddWork
+import com.eliamyro.arccalendar.dialogs.DialogDate
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.Work
 import com.eliamyro.arccalendar.presenters.PresenterFragmentWorksList
@@ -21,7 +22,12 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import kotlinx.android.synthetic.main.dialog_add_work.*
 import kotlinx.android.synthetic.main.fragment_works_list.*
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
 
@@ -53,17 +59,23 @@ class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
         rv_works.layoutManager = LinearLayoutManager(activity)
 
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("$FIREBASE_LOCATION_EXCAVATION_WORKS/$mExcavationId")
+        val query: Query = reference.orderByChild("workDate")
+
         mAdapter = object : FirebaseRecyclerAdapter<Work, WorkHolder>(
                 Work::class.java,
                 R.layout.item_row_work,
                 WorkHolder::class.java,
-                reference) {
+                query) {
 
             override fun populateViewHolder(holder: WorkHolder, work: Work, position: Int) {
                 val workId: String = getRef(position).key
 
                 holder.bindWorkView(work)
                 holder.itemView.setOnClickListener { mCallbackListener?.onItemSelected(workId = workId) }
+            }
+
+            override fun getItem(position: Int): Work {
+                return super.getItem(itemCount - (position + 1))
             }
         }
 

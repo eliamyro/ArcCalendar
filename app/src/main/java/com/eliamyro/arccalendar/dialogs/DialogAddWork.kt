@@ -18,11 +18,23 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogAddWork
 import kotlinx.android.synthetic.main.dialog_add_work.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Elias Myronidis on 6/9/17.
  */
-class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger {
+class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger, DialogDate.DateSetListener {
+    private var workTimestamp: Timestamp? = null
+
+    override fun setDate(timestamp: Timestamp) {
+        workTimestamp = timestamp
+        val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
+
+        val date: String = sFormat.format(workTimestamp)
+        et_work_date.setText(date)
+    }
 
 
     private val mPresenter: ContractDialogAddWork.Actions by lazy { PresenterDialogAddWork(this) }
@@ -50,6 +62,8 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger 
         view?.setOnClickListener({})
 
         setHasOptionsMenu(true)
+
+        et_work_date.setOnClickListener({showDateDialog()})
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -60,11 +74,12 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_save -> {
+                val workDate: String = workTimestamp.toString()
                 val directorsList: List<String> = tg_work_directors_list.tags.asList()
                 val archaeologistsList: List<String> = tg_work_archaeologists_list.tags.asList()
                 val studentsList: List<String> = tg_work_students_list.tags.asList()
                 val description: String = et_work_description.text.toString()
-                val work = Work(description, directorsList, archaeologistsList, studentsList)
+                val work = Work(workDate, description, directorsList, archaeologistsList, studentsList)
 
                 if (mPresenter.addWork(mExcavationId, work)) {
 
@@ -76,5 +91,10 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger 
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showDateDialog(){
+        val dateDialog = DialogDate()
+        dateDialog.show(childFragmentManager, "dialog_date")
     }
 }

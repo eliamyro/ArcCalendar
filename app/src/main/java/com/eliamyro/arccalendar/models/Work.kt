@@ -8,11 +8,12 @@ import kotlin.collections.ArrayList
 /**
  * Created by Elias Myronidis on 4/9/17.
  */
-data class Work(val description: String = "", val directorsList: List<String> = ArrayList(),
+data class Work(val workDate: String = "", val description: String = "", val directorsList: List<String> = ArrayList(),
                 val archaeologistsList: List<String> = ArrayList(),
                 val studentsList: List<String> = ArrayList()) : Parcelable {
 
     constructor(source: Parcel) : this(
+            source.readString(),
             source.readString(),
             source.createStringArrayList(),
             source.createStringArrayList(),
@@ -22,6 +23,7 @@ data class Work(val description: String = "", val directorsList: List<String> = 
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeString(workDate)
         writeString(description)
         writeStringList(directorsList)
         writeStringList(archaeologistsList)
