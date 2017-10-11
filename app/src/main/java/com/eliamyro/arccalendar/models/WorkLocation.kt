@@ -6,13 +6,13 @@ import android.os.Parcelable
 /**
  * Created by Elias Myronidis on 25/9/17.
  */
-data class WorkLocation(val title: String = "", val description: String = ""): Parcelable {
+data class WorkLocation(val location: String = "", val description: String = ""): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(title)
+        parcel.writeString(location)
         parcel.writeString(description)
     }
 

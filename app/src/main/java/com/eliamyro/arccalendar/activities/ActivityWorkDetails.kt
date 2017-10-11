@@ -2,33 +2,25 @@ package com.eliamyro.arccalendar.activities
 
 import android.content.Intent
 import android.support.design.widget.TabLayout
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
 
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
+import com.eliamyro.arccalendar.contracts.ContractDialogDeleteWork
+import com.eliamyro.arccalendar.dialogs.DialogDeleteWork
 import com.eliamyro.arccalendar.fragments.FragmentWorkDetailPlaceholder
 import com.eliamyro.arccalendar.listeners.ClickCallback
-import com.eliamyro.arccalendar.models.WorkLocation
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteWork
 import kotlinx.android.synthetic.main.activity_work_tabs.*
-import kotlinx.android.synthetic.main.fragment_activity_work_tabs.view.*
 
-class ActivityWorkDetails : ActivityBase(), ClickCallback {
+class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteWork.Views {
 
     companion object {
         private val TAG: String = ActivityWorkDetails::class.java.simpleName
@@ -44,15 +36,15 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback {
      */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
-    private val excavationItemId: String by lazy { intent.getStringExtra(KEY_EXCAVATION_ITEM_ID)}
-    private val workItemId: String by lazy { intent.getStringExtra(KEY_WORK_ITEM_ID) }
+    private val mExcavationItemId: String by lazy { intent.getStringExtra(KEY_EXCAVATION_ITEM_ID)}
+    private val mWorkItemId: String by lazy { intent.getStringExtra(KEY_WORK_ITEM_ID) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_work_tabs)
 
         configureToolbar(true)
-//        setSupportActionBar(toolbar)
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -81,7 +73,7 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback {
         val id = item?.itemId
 
         if (id == R.id.action_delete_work) {
-            // TODO: Implement delete work
+            showDeleteWorkDialog()
             return true
         }
 
@@ -92,8 +84,8 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback {
         Log.d(TAG, "excId: $excavationId, workId: $workId, WorkLocId: $workLocationId" )
 
         val intent = Intent(this, ActivityFindingsList::class.java)
-        intent.putExtra(KEY_EXCAVATION_ITEM_ID, excavationId)
-        intent.putExtra(KEY_WORK_ITEM_ID, workItemId)
+        intent.putExtra(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        intent.putExtra(KEY_WORK_ITEM_ID, mWorkItemId)
         intent.putExtra(KEY_WORK_LOCATION_ITEM_ID, workLocationId)
         startActivity(intent)
     }
@@ -114,7 +106,7 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback {
         override fun getItem(position: Int): Fragment? {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return FragmentWorkDetailPlaceholder.newInstance(position + 1, excavationItemId, workItemId)
+            return FragmentWorkDetailPlaceholder.newInstance(position + 1, mExcavationItemId, mWorkItemId)
         }
 
         override fun getCount(): Int {
@@ -129,6 +121,17 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback {
                 else -> return ""
             }
         }
+    }
+
+    private fun showDeleteWorkDialog(){
+
+        val dialog = DialogDeleteWork()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        dialog.arguments = bundle
+
+        dialog.show(supportFragmentManager, DELETE_WORK_DIALOG)
     }
 
 }

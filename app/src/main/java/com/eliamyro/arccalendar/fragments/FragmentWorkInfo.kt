@@ -40,9 +40,13 @@ class FragmentWorkInfo: Fragment(), ContractFragmentWorkInfo.Views {
     }
 
     override fun displayInfo(work: Work?) {
-        tg_directors.setTags(work?.directorsList)
-        tg_archaelogists.setTags(work?.archaeologistsList)
-        tg_students.setTags(work?.studentsList)
+        if(work != null) {
+            tg_directors.setTags(work?.directorsList)
+            tg_archaelogists.setTags(work?.archaeologistsList)
+            tg_students.setTags(work?.studentsList)
+        } else {
+            activity.finish()
+        }
     }
 
     override fun removeFragment() {

@@ -27,5 +27,6 @@
     <string name="info">Info</string>
     <string name="locations">Locations</string>
     <string name="delete_finding">Delete finding?</string>
+    <string name="delete_work">Delete work?</string>
 
 </resources>

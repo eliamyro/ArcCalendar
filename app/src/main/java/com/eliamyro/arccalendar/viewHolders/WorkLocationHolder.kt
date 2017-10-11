@@ -11,7 +11,7 @@ class WorkLocationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bindWorkLocation(workLocation: WorkLocation){
         with(itemView){
-            tv_work_location_title.text = workLocation.title
+            tv_work_location_title.text = workLocation.location
             tv_work_location_description.text = workLocation.description
         }
     }

@@ -33,7 +33,7 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger,
         val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
 
         val date: String = sFormat.format(workTimestamp)
-        et_work_date.setText(date)
+        tv_work_date.setText(date)
     }
 
 
@@ -63,7 +63,18 @@ class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger,
 
         setHasOptionsMenu(true)
 
-        et_work_date.setOnClickListener({showDateDialog()})
+        setDate(getCurrentTimestamp())
+
+        tv_work_date.setOnClickListener({showDateDialog()})
+    }
+
+    private fun getCurrentTimestamp(): Timestamp{
+        val calendar = Calendar.getInstance()
+        val year: Int = calendar.get(Calendar.YEAR)
+        val month: Int = calendar.get(Calendar.MONTH)
+        val day: Int = calendar.get(Calendar.DAY_OF_MONTH)
+        calendar.set(year, month, day)
+        return Timestamp(calendar.timeInMillis)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

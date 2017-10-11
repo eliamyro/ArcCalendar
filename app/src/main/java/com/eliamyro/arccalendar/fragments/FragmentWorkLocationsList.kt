@@ -11,6 +11,8 @@ import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
+import com.eliamyro.arccalendar.common.inTransaction
+import com.eliamyro.arccalendar.dialogs.DialogAddWorkLocation
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.WorkLocation
 import com.eliamyro.arccalendar.viewHolders.WorkLocationHolder
@@ -29,8 +31,8 @@ class FragmentWorkLocationsList : Fragment() {
         private val TAG: String = FragmentWorkLocationsList::class.java.simpleName
     }
 
-    private val excavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
-    private val workItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }
+    private val mExcavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
+    private val mWorkItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }
     private var mCallbackListener: ClickCallback? = null
 
     private var mAdapter: FirebaseRecyclerAdapter<WorkLocation, WorkLocationHolder>? = null
@@ -51,7 +53,7 @@ class FragmentWorkLocationsList : Fragment() {
         fab.setOnClickListener { showAddWorkLocationDialog() }
         rv_work_locations.layoutManager = LinearLayoutManager(activity)
 
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$workItemId")
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference.child("$FIREBASE_LOCATION_WORK_LOCATIONS/$mExcavationItemId/$mWorkItemId")
         mAdapter = object : FirebaseRecyclerAdapter<WorkLocation, WorkLocationHolder>(
                 WorkLocation::class.java,
                 R.layout.item_row_work_location,
@@ -62,7 +64,7 @@ class FragmentWorkLocationsList : Fragment() {
                 val workLocationItemId: String = getRef(position).key
 
                 holder.bindWorkLocation(workLocation)
-                holder.itemView.setOnClickListener { mCallbackListener?.onItemSelected(excavationItemId, workItemId, workLocationItemId) }
+                holder.itemView.setOnClickListener { mCallbackListener?.onItemSelected(mExcavationItemId, mWorkItemId, workLocationItemId) }
             }
         }
 
@@ -80,23 +82,15 @@ class FragmentWorkLocationsList : Fragment() {
     }
 
     private fun showAddWorkLocationDialog(){
-            val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
-            val title = "Work Title"
-            val description = "Work description"
 
-            val workLocation = WorkLocation(title, description)
+        val dialog = DialogAddWorkLocation()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        dialog.arguments = bundle
+        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
 
-            val updatedItemToAddMap = HashMap<String, Any>()
-            val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
-                    .child(FIREBASE_LOCATION_WORK_LOCATIONS).child(excavationItemId).child(workItemId)
 
-            /* Save push() to maintain same random Id */
-            val newRef = itemsRef.push()
-            val itemId = newRef.key
-
-            val itemToAdd = ObjectMapper().convertValue(workLocation, Map::class.java) as HashMap<*, *>
-            updatedItemToAddMap.put("/$FIREBASE_LOCATION_WORK_LOCATIONS/$excavationItemId/$workItemId/$itemId", itemToAdd)
-
-            reference.updateChildren(updatedItemToAddMap)
+//
     }
 }
