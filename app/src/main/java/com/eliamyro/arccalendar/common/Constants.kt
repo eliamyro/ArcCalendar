@@ -31,6 +31,7 @@ const val FIREBASE_PROPERTY_WORK_STUDENTS = "studentsList"
 
 const val KEY_EXCAVATION = "excavation"
 const val KEY_WORK = "work"
+const val KEY_WORK_LOCATION = "work_location"
 const val KEY_EXCAVATION_ITEM_ID = "excavation_item_id"
 const val KEY_WORK_ITEM_ID = "work_item_id"
 const val KEY_WORK_LOCATION_ITEM_ID = "work_location_item_id"

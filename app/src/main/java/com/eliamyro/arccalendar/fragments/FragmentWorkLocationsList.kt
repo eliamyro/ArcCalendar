@@ -11,6 +11,7 @@ import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations.Views
 import com.eliamyro.arccalendar.dialogs.DialogAddWorkLocation
 import com.eliamyro.arccalendar.dialogs.DialogDeleteAllLocations
+import com.eliamyro.arccalendar.dialogs.DialogWorkLocationDetails
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.WorkLocation
 import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteAllLocations
@@ -19,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_work_locations.*
+import kotlinx.android.synthetic.main.item_row_work_location.view.*
 
 /**
  * Created by Elias Myronidis on 19/9/17.
@@ -62,7 +64,8 @@ class FragmentWorkLocationsList : Fragment() {
                 val workLocationItemId: String = getRef(position).key
 
                 holder.bindWorkLocation(workLocation)
-                holder.itemView.setOnClickListener { mCallbackListener?.onItemSelected(mExcavationItemId, mWorkItemId, workLocationItemId) }
+                holder.itemView.setOnClickListener { showWorkLocationDetailsDialog(workLocationItemId, holder.adapterPosition)}
+                holder.itemView.tv_findings.setOnClickListener{ mCallbackListener?.onItemSelected(mExcavationItemId, mWorkItemId, workLocationItemId)                }
             }
         }
 
@@ -110,4 +113,20 @@ class FragmentWorkLocationsList : Fragment() {
 
         dialog.show(fragmentManager, DELETE_ALL_LOCATIONS_DIALOG)
     }
+
+    private fun showWorkLocationDetailsDialog(workLocationItemId: String, position: Int){
+        val dialog = DialogWorkLocationDetails()
+        val bundle = Bundle()
+        val workLocation: WorkLocation? = mAdapter?.getItem(position)
+        bundle.putParcelable(KEY_WORK_LOCATION, workLocation)
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
+
+        dialog.arguments = bundle
+
+        fragmentManager.inTransaction({ replace(android.R.id.content, dialog) })
+
+    }
+
 }

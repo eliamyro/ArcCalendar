@@ -6,6 +6,7 @@ import android.util.Log
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
+import com.eliamyro.arccalendar.common.toast
 import com.eliamyro.arccalendar.fragments.FragmentWorksList
 import com.eliamyro.arccalendar.listeners.ClickCallback
 
@@ -33,10 +34,10 @@ class ActivityWorksList : ActivityBase(), ClickCallback {
     override fun onItemSelected(excavationId: String, workId: String, workLocationId: String) {
         Log.d("TAG", "ExcavationId: $mExcavationId, WorkId: $workId")
 
-        val mIntent = Intent(this, ActivityWorkDetails::class.java)
-        mIntent.putExtra(KEY_EXCAVATION_ITEM_ID, mExcavationId)
-        mIntent.putExtra(KEY_WORK_ITEM_ID, workId)
-        startActivity(mIntent)
-        overridePendingTransition(R.anim.right_in, R.anim.left_out)
+            val mIntent = Intent(this, ActivityWorkDetails::class.java)
+            mIntent.putExtra(KEY_EXCAVATION_ITEM_ID, mExcavationId)
+            mIntent.putExtra(KEY_WORK_ITEM_ID, workId)
+            startActivity(mIntent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
     }
 }

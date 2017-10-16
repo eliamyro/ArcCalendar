@@ -83,11 +83,12 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteW
     override fun onItemSelected(excavationId: String, workId: String, workLocationId: String) {
         Log.d(TAG, "excId: $excavationId, workId: $workId, WorkLocId: $workLocationId" )
 
-        val intent = Intent(this, ActivityFindingsList::class.java)
-        intent.putExtra(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
-        intent.putExtra(KEY_WORK_ITEM_ID, mWorkItemId)
-        intent.putExtra(KEY_WORK_LOCATION_ITEM_ID, workLocationId)
-        startActivity(intent)
+            val intent = Intent(this, ActivityFindingsList::class.java)
+            intent.putExtra(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+            intent.putExtra(KEY_WORK_ITEM_ID, mWorkItemId)
+            intent.putExtra(KEY_WORK_LOCATION_ITEM_ID, workLocationId)
+            startActivity(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
     }
 
     override fun finish() {

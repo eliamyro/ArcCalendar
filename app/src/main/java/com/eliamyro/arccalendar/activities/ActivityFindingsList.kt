@@ -30,4 +30,9 @@ class ActivityFindingsList : ActivityBase() {
         bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
         fragment.arguments = bundle
     }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.left_in, R.anim.right_out)
+    }
 }
