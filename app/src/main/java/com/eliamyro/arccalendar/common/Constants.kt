@@ -18,12 +18,19 @@ const val FIREBASE_PROPERTY_EXCAVATION_PLACE = "place"
 const val FIREBASE_PROPERTY_EXCAVATION_ORGANISATION = "organisation"
 const val FIREBASE_PROPERTY_EXCAVATION_DESCRIPTION = "description"
 const val FIREBASE_PROPERTY_WORK_DATE = "workDate"
+const val FIREBASE_PROPERTY_WORK_DESCRIPTION = "description"
+const val FIREBASE_PROPERTY_WORK_DIRECTORS = "directorsList"
+const val FIREBASE_PROPERTY_WORK_ARCHAEOLOGISTS = "archaeologistsList"
+const val FIREBASE_PROPERTY_WORK_STUDENTS = "studentsList"
+
+
 
 /**
  * Constants for bundles, extras and shared preferences keys
  */
 
 const val KEY_EXCAVATION = "excavation"
+const val KEY_WORK = "work"
 const val KEY_EXCAVATION_ITEM_ID = "excavation_item_id"
 const val KEY_WORK_ITEM_ID = "work_item_id"
 const val KEY_WORK_LOCATION_ITEM_ID = "work_location_item_id"
@@ -39,3 +46,4 @@ const val KEY_FINDING_ITEM_ID = "finding_item_id"
 const val DELETE_EXCAVATION_DIALOG: String = "delete_excavation_dialog"
 const val DELETE_FINDING_DIALOG: String = "delete_finding_dialog"
 const val DELETE_WORK_DIALOG: String = "delete_work_dialog"
+const val DELETE_ALL_LOCATIONS_DIALOG: String = "delete_all_locations_dialog"

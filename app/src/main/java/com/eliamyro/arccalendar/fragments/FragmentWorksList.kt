@@ -4,33 +4,28 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.*
+import android.widget.Toast
 import com.eliamyro.arccalendar.R
-import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_WORKS
-import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
-import com.eliamyro.arccalendar.common.inTransaction
-import com.eliamyro.arccalendar.contracts.ContractFragmentWorksList
+import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.dialogs.DialogAddWork
+import com.eliamyro.arccalendar.dialogs.DialogDeleteAllWorks
+import com.eliamyro.arccalendar.dialogs.DialogEditWork
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.Work
-import com.eliamyro.arccalendar.presenters.PresenterFragmentWorksList
 import com.eliamyro.arccalendar.viewHolders.WorkHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import kotlinx.android.synthetic.main.fragment_works_list.*
-import com.eliamyro.arccalendar.common.FIREBASE_PROPERTY_WORK_DATE
 
 
-class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
+class FragmentWorksList : Fragment() {
 
     private val mExcavationId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private var mAdapter: FirebaseRecyclerAdapter<Work, WorkHolder>? = null
     private var mCallbackListener: ClickCallback? = null
-
-    private val mPresenter: ContractFragmentWorksList.Actions by lazy { PresenterFragmentWorksList() }
 
     companion object {
         private val TAG: String = FragmentWorksList::class.java.simpleName
@@ -49,7 +44,7 @@ class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        fab_add_work.setOnClickListener{ showAddWorkDialog() }
+        fab_add_work.setOnClickListener { showAddWorkDialog() }
 
         val lManager = LinearLayoutManager(activity)
         lManager.reverseLayout = true
@@ -79,7 +74,7 @@ class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        if(context is ClickCallback){
+        if (context is ClickCallback) {
             mCallbackListener = context
         } else {
             throw RuntimeException(context!!.toString() + " must implement ClickCallback")
@@ -98,17 +93,29 @@ class FragmentWorksList : Fragment(), ContractFragmentWorksList.Views {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
-
-        when(item?.itemId){
-            R.id.action_works_list_delete -> mPresenter.deleteWorks(mExcavationId)
+        when (item?.itemId) {
+            R.id.action_works_list_delete -> {
+                if (mAdapter?.itemCount == 0) {
+                    Toast.makeText(activity, "There are no works to delete!", Toast.LENGTH_SHORT).show()
+                } else {
+                    showDeleteAllWorksDialog(mExcavationId)
+                }
+            }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showAddWorkDialog(){
+    private fun showDeleteAllWorksDialog(itemId: String?) {
+        val dialog = DialogDeleteAllWorks()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, itemId)
+        dialog.arguments = bundle
 
+        dialog.show(fragmentManager, DELETE_WORK_DIALOG)
+    }
+
+    private fun showAddWorkDialog() {
         val dialog = DialogAddWork()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationId)

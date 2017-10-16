@@ -28,5 +28,14 @@
     <string name="locations">Locations</string>
     <string name="delete_finding">Delete finding?</string>
     <string name="delete_work">Delete work?</string>
+    <string name="delete_all_works">Delete all the works?</string>
+    <string name="date">Date</string>
+    <string name="tap_to_select_a_date">Tap to select a date..</string>
+    <string name="excavation_directors">Excavation directors</string>
+    <string name="add_director_name">Add director name</string>
+    <string name="archaeologists">Archaeologists</string>
+    <string name="add_arc_name">Add archaeologist name</string>
+    <string name="students">Students</string>
+    <string name="add_student_name">Add student name</string>
 
 </resources>

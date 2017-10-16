@@ -17,7 +17,7 @@ class WorkHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bindWorkView(work: Work) = with(itemView){
         var timestamp: Timestamp? = null
         try {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
             val parsedDate = dateFormat.parse(work.workDate)
             timestamp = Timestamp(parsedDate.time)
         } catch (e: Exception) { //this generic but you can control another types of exception

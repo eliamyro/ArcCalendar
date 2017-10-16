@@ -4,19 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.eliamyro.arccalendar.R
-import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
-import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
-import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
-import com.eliamyro.arccalendar.common.inTransaction
+import com.eliamyro.arccalendar.common.*
+import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations
+import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations.Views
 import com.eliamyro.arccalendar.dialogs.DialogAddWorkLocation
+import com.eliamyro.arccalendar.dialogs.DialogDeleteAllLocations
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.WorkLocation
+import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteAllLocations
 import com.eliamyro.arccalendar.viewHolders.WorkLocationHolder
-import com.fasterxml.jackson.databind.ObjectMapper
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -81,16 +79,35 @@ class FragmentWorkLocationsList : Fragment() {
         }
     }
 
-    private fun showAddWorkLocationDialog(){
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.menu_work_locations, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId){
+            R.id.action_delete_locations ->
+                showDeleteAllLocationsDialog()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showAddWorkLocationDialog(){
         val dialog = DialogAddWorkLocation()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
         bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
         dialog.arguments = bundle
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+    }
 
+    private fun showDeleteAllLocationsDialog(){
+        val dialog = DialogDeleteAllLocations()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        dialog.arguments = bundle
 
-//
+        dialog.show(fragmentManager, DELETE_ALL_LOCATIONS_DIALOG)
     }
 }

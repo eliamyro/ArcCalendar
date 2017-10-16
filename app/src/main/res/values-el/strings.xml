@@ -20,5 +20,14 @@
     <string name="info">Πληροφορίες</string>
     <string name="locations">Τοποθεσίες</string>
     <string name="delete_finding">Διαγραφή του ευρήματος;</string>
-    <string name="delete_work">Delete work?</string>
+    <string name="delete_work">Διαγραφή εργασίας;</string>
+    <string name="delete_all_works">Διαγραφή όλων των εργασιών;</string>
+    <string name="date">Ημερομηνία</string>
+    <string name="tap_to_select_a_date">Πατήστε για επιλογή ημερομηνίας..</string>
+    <string name="excavation_directors">Διευθυντές ανασκαφής</string>
+    <string name="add_director_name">Πρόσθεσε όνομα διευθυντή</string>
+    <string name="archaeologists">Αρχαιολόγοι</string>
+    <string name="add_arc_name">Πρόσθεσε όνομα αρχαιολόγου</string>
+    <string name="students">Φοιτητές</string>
+    <string name="add_student_name">Πρόσθεσε όνομα φοιτητή</string>
 </resources>

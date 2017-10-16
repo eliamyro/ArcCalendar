@@ -4,9 +4,11 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.Toast
 import com.eliamyro.arccalendar.R
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,7 +25,7 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     transaction.commit()
 }
 
-fun Long.toStringDate():String{
+fun Long.toStringDate(): String {
     try {
         val sdf = SimpleDateFormat("dd/MM/yyyy")
         val netDate = Date(this)
@@ -33,10 +35,58 @@ fun Long.toStringDate():String{
     }
 }
 
-fun Context.toast(message: String, length: Int = Toast.LENGTH_SHORT){
+fun Context.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, length).show()
 }
 
-fun Fragment.toast(message: String, length: Int = Toast.LENGTH_SHORT){
+fun Fragment.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
     this.context.toast(message, length)
+}
+
+fun View.getDate(date: String): String {
+    var timestamp: Timestamp? = null
+    try {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+        val parsedDate = dateFormat.parse(date)
+        timestamp = Timestamp(parsedDate.time)
+    } catch (e: Exception) { //this generic but you can control another types of exception
+        // look the origin of excption
+    }
+
+
+    val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
+    return sFormat.format(timestamp)
+
+}
+
+fun Toolbar.setDateToToolbar(date: String){
+    this.title = getDate(date)
+}
+
+fun String.formatDate(): String{
+    var timestamp: Timestamp? = null
+    try {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+        val parsedDate = dateFormat.parse(this)
+        timestamp = Timestamp(parsedDate.time)
+    } catch (e: Exception) { //this generic but you can control another types of exception
+        // look the origin of excption
+    }
+
+
+    val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
+    return sFormat.format(timestamp)
+}
+
+fun String.toTimestamp(): String{
+    var timestamp: Timestamp? = null
+    try {
+        val dateFormat = SimpleDateFormat("dd MMMM yyy")
+        val parsedDate = dateFormat.parse(this)
+        timestamp = Timestamp(parsedDate.time)
+    } catch (e: Exception) { //this generic but you can control another types of exception
+        // look the origin of excption
+    }
+
+    return timestamp.toString()
 }
