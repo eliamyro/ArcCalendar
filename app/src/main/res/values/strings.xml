@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ArcCalendar</string>
+    <string name="app_name" translatable="false">ArcCalendar</string>
     <string name="create">CREATE</string>
     <string name="cancel">Cancel</string>
     <string name="delete">DELETE</string>
@@ -37,5 +37,10 @@
     <string name="add_arc_name">Add archaeologist name</string>
     <string name="students">Students</string>
     <string name="add_student_name">Add student name</string>
-
+    <string name="create_finding">Create finding</string>
+    <string name="director">Excavation director</string>
+    <string name="findings">FINDINGS</string>
+    <string name="e_g_east_zone_a1">e.g. East Zone A1</string>
+    <string name="add_new_location">Add new location</string>
+    <string name="finding_name">Finding name</string>
 </resources>

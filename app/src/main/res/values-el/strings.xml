@@ -30,4 +30,13 @@
     <string name="add_arc_name">Πρόσθεσε όνομα αρχαιολόγου</string>
     <string name="students">Φοιτητές</string>
     <string name="add_student_name">Πρόσθεσε όνομα φοιτητή</string>
+    <string name="create_finding">Δημιουργία ευρήματος</string>
+    <string name="excavation_director">Διευθυντής ανασκαφής</string>
+    <string name="title_activity_work_tabs">Εργασίες</string>
+    <string name="action_settings">Ρυθμίσεις</string>
+    <string name="menu_delete_all">Διαγραφή όλων</string>
+    <string name="findings">ΕΥΡΗΜΑΤΑ</string>
+    <string name="e_g_east_zone_a1">π.χ. Ανατολική Ζώνη ΑΝ1α</string>
+    <string name="add_new_location">Προσθήκη τοποθεσίας</string>
+    <string name="finding_name">Ονομασία ευρήματος</string>
 </resources>

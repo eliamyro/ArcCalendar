@@ -72,7 +72,7 @@
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif-medium"
             android:padding="8dp"
-            android:text="FINDINGS"
+            android:text="@string/findings"
             android:textColor="@color/color_action"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"

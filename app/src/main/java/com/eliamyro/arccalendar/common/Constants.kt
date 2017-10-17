@@ -48,3 +48,5 @@ const val DELETE_EXCAVATION_DIALOG: String = "delete_excavation_dialog"
 const val DELETE_FINDING_DIALOG: String = "delete_finding_dialog"
 const val DELETE_WORK_DIALOG: String = "delete_work_dialog"
 const val DELETE_ALL_LOCATIONS_DIALOG: String = "delete_all_locations_dialog"
+const val DELETE_WORK_LOCATION_DIALOG: String = "delete_work_location_dialog"
+

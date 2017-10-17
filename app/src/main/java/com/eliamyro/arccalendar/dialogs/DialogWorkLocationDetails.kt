@@ -91,24 +91,27 @@ class DialogWorkLocationDetails: DialogFragment() {
         return super.onCreateOptionsMenu(menu, inflater)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//
-//        when(item?.itemId){
-//            R.id.action_delete -> showDeleteExcavationDialog(itemId)
-//            R.id.action_edit -> showEditExcavationDialog(mExcavation)
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-//    private fun showDeleteExcavationDialog(itemId: String?) {
-//        val dialog = DialogDeleteExcavation()
-//        val bundle = Bundle()
-//        bundle.putString(KEY_EXCAVATION_ITEM_ID, itemId)
-//        dialog.arguments = bundle
-//
-//        dialog.show(fragmentManager, DELETE_EXCAVATION_DIALOG)
-//    }
+        when(item?.itemId){
+            R.id.action_delete -> showDeleteWorkLocationDialog()
+//            R.id.action_edit -> showEditExcavationDialog(mExcavation)
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showDeleteWorkLocationDialog() {
+        val dialog = DialogDeleteWorkLocation()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, mWorkLocationItemId)
+
+        dialog.arguments = bundle
+
+        dialog.show(fragmentManager, DELETE_WORK_LOCATION_DIALOG)
+    }
 
 //    private fun showEditExcavationDialog(excavation: Excavation?){
 //        val dialog = DialogEditExcavation()

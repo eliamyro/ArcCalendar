@@ -117,7 +117,6 @@ class DialogExcavationDetails : DialogFragment() {
         dialog.arguments = bundle
 
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
-
     }
 
     override fun onDismiss(dialog: DialogInterface?) {

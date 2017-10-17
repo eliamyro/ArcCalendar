@@ -75,32 +75,32 @@ class FragmentFindingsList: Fragment() {
     }
 
     private fun showAddFindingDialog(){
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
-        val name = "Finding name"
-        val image = "Finding image"
-
-        val finding = Finding(name, image)
-
-        val updatedItemToAddMap = HashMap<String, Any>()
-        val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
-                .child("$FIREBASE_LOCATION_FINDINGS/$excavationItemId/$workItemId/$workLocationItemId")
-
-        /* Save push() to maintain same random Id */
-        val newRef = itemsRef.push()
-        val itemId = newRef.key
-
-        val itemToAdd = ObjectMapper().convertValue(finding, Map::class.java) as HashMap<*, *>
-        updatedItemToAddMap.put("/$FIREBASE_LOCATION_FINDINGS/$excavationItemId/$workItemId/$workLocationItemId/$itemId", itemToAdd)
-
-        reference.updateChildren(updatedItemToAddMap)
-//        val dialog = DialogAddFinding()
-//        val bundle = Bundle()
-//        bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
-//        bundle.putString(KEY_WORK_ITEM_ID, workItemId)
-//        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
-//        dialog.arguments = bundle
+//        val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
+//        val name = "Finding name"
+//        val image = "Finding image"
 //
-//        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+//        val finding = Finding(name, image)
+//
+//        val updatedItemToAddMap = HashMap<String, Any>()
+//        val itemsRef: DatabaseReference = FirebaseDatabase.getInstance().reference
+//                .child("$FIREBASE_LOCATION_FINDINGS/$excavationItemId/$workItemId/$workLocationItemId")
+//
+//        /* Save push() to maintain same random Id */
+//        val newRef = itemsRef.push()
+//        val itemId = newRef.key
+//
+//        val itemToAdd = ObjectMapper().convertValue(finding, Map::class.java) as HashMap<*, *>
+//        updatedItemToAddMap.put("/$FIREBASE_LOCATION_FINDINGS/$excavationItemId/$workItemId/$workLocationItemId/$itemId", itemToAdd)
+//
+//        reference.updateChildren(updatedItemToAddMap)
+        val dialog = DialogAddFinding()
+        val bundle = Bundle()
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, workItemId)
+        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, workLocationItemId)
+        dialog.arguments = bundle
+
+        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
 
     }
 }
