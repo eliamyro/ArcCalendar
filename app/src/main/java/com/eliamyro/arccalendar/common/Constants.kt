@@ -22,6 +22,8 @@ const val FIREBASE_PROPERTY_WORK_DESCRIPTION = "description"
 const val FIREBASE_PROPERTY_WORK_DIRECTORS = "directorsList"
 const val FIREBASE_PROPERTY_WORK_ARCHAEOLOGISTS = "archaeologistsList"
 const val FIREBASE_PROPERTY_WORK_STUDENTS = "studentsList"
+const val FIREBASE_PROPERTY_WORK_LOCATION_LOCATION = "location"
+const val FIREBASE_PROPERTY_WORK_LOCATION_DESCRIPTION = "description"
 
 
 

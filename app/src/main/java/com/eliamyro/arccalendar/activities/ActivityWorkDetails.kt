@@ -134,5 +134,4 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteW
 
         dialog.show(supportFragmentManager, DELETE_WORK_DIALOG)
     }
-
 }

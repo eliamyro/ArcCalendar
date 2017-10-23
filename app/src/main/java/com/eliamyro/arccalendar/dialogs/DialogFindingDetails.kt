@@ -107,7 +107,7 @@ class DialogFindingDetails: DialogFragment() {
     }
 
     private fun showEditFindingDialog(){
-        val dialog = DialogFindingEdit()
+        val dialog = DialogEditFinding()
         val bundle = Bundle()
         bundle.putParcelable(KEY_FINDING, mFinding)
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)

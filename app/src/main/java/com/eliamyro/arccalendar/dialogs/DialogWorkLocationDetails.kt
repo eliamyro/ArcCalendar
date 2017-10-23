@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
@@ -95,7 +96,8 @@ class DialogWorkLocationDetails: DialogFragment() {
 
         when(item?.itemId){
             R.id.action_delete -> showDeleteWorkLocationDialog()
-//            R.id.action_edit -> showEditExcavationDialog(mExcavation)
+            R.id.action_edit -> showEditWorkLocationDialog()
+            else -> Log.d(TAG, "Unrecognised menu item selection")
         }
 
         return super.onOptionsItemSelected(item)
@@ -113,17 +115,19 @@ class DialogWorkLocationDetails: DialogFragment() {
         dialog.show(fragmentManager, DELETE_WORK_LOCATION_DIALOG)
     }
 
-//    private fun showEditExcavationDialog(excavation: Excavation?){
-//        val dialog = DialogEditExcavation()
-//        val bundle = Bundle()
-//        bundle.putParcelable(KEY_EXCAVATION, excavation)
-//        bundle.putString(KEY_EXCAVATION_ITEM_ID, itemId)
-//        dialog.arguments = bundle
-//
-//        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
-//
-//    }
-//
+    private fun showEditWorkLocationDialog(){
+        val dialog = DialogEditWorkLocation()
+        val bundle = Bundle()
+        bundle.putParcelable(KEY_WORK_LOCATION, mWorkLocation)
+        bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
+        bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
+        bundle.putString(KEY_WORK_LOCATION_ITEM_ID, mWorkLocationItemId)
+        dialog.arguments = bundle
+
+        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+
+    }
+
     override fun onDismiss(dialog: DialogInterface?) {
         super.onDismiss(dialog)
 

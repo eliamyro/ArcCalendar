@@ -48,8 +48,8 @@ class FragmentWorkInfo : Fragment(), ContractFragmentWorkInfo.Views {
 
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.menu_work_info, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -93,5 +93,7 @@ class FragmentWorkInfo : Fragment(), ContractFragmentWorkInfo.Views {
         dialog.arguments = bundle
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
     }
+
+
 
 }

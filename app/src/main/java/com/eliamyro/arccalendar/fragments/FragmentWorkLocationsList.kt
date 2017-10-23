@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
@@ -39,16 +40,18 @@ class FragmentWorkLocationsList : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setHasOptionsMenu(true)
+        Log.d(TAG, "onCreate")
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d(TAG, "onCreateView")
         return inflater?.inflate(R.layout.fragment_work_locations, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "onViewCreated")
 
         fab.setOnClickListener { showAddWorkLocationDialog() }
         rv_work_locations.layoutManager = LinearLayoutManager(activity)
@@ -64,8 +67,8 @@ class FragmentWorkLocationsList : Fragment() {
                 val workLocationItemId: String = getRef(position).key
 
                 holder.bindWorkLocation(workLocation)
-                holder.itemView.setOnClickListener { showWorkLocationDetailsDialog(workLocationItemId, holder.adapterPosition)}
-                holder.itemView.tv_findings.setOnClickListener{ mCallbackListener?.onItemSelected(mExcavationItemId, mWorkItemId, workLocationItemId)                }
+                holder.itemView.setOnClickListener { showWorkLocationDetailsDialog(workLocationItemId, holder.adapterPosition) }
+                holder.itemView.tv_findings.setOnClickListener { mCallbackListener?.onItemSelected(mExcavationItemId, mWorkItemId, workLocationItemId) }
             }
         }
 
@@ -74,8 +77,9 @@ class FragmentWorkLocationsList : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        Log.d(TAG, "onAttach")
 
-        if(context is ClickCallback){
+        if (context is ClickCallback) {
             mCallbackListener = context
         } else {
             throw RuntimeException(context!!.toString() + " must implement ClickCallback")
@@ -83,19 +87,21 @@ class FragmentWorkLocationsList : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
+        Log.d(TAG, "onCreateOptionsMenu")
         inflater?.inflate(R.menu.menu_work_locations, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+        Log.d(TAG, "onOptionsItemSelected")
+        when (item?.itemId) {
             R.id.action_delete_locations ->
                 showDeleteAllLocationsDialog()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showAddWorkLocationDialog(){
+    private fun showAddWorkLocationDialog() {
         val dialog = DialogAddWorkLocation()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
@@ -104,7 +110,7 @@ class FragmentWorkLocationsList : Fragment() {
         fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
     }
 
-    private fun showDeleteAllLocationsDialog(){
+    private fun showDeleteAllLocationsDialog() {
         val dialog = DialogDeleteAllLocations()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
@@ -114,7 +120,7 @@ class FragmentWorkLocationsList : Fragment() {
         dialog.show(fragmentManager, DELETE_ALL_LOCATIONS_DIALOG)
     }
 
-    private fun showWorkLocationDetailsDialog(workLocationItemId: String, position: Int){
+    private fun showWorkLocationDetailsDialog(workLocationItemId: String, position: Int) {
         val dialog = DialogWorkLocationDetails()
         val bundle = Bundle()
         val workLocation: WorkLocation? = mAdapter?.getItem(position)
@@ -126,7 +132,15 @@ class FragmentWorkLocationsList : Fragment() {
         dialog.arguments = bundle
 
         fragmentManager.inTransaction({ replace(android.R.id.content, dialog) })
-
     }
 
+    override fun onAttachFragment(childFragment: Fragment?) {
+        super.onAttachFragment(childFragment)
+        Log.d(TAG, "onAttachFragment")
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        Log.d(TAG, "onHiddenChanged")
+    }
 }
