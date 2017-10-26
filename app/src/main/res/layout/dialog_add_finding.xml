@@ -18,31 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <FrameLayout
-                android:id="@+id/fl_finding_image"
+
+            <ImageView
+                android:id="@+id/iv_finding"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/iv_finding"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher" />
-
-                <ImageView
-                    android:id="@+id/iv_finding_indicator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_add_24dp"
-                    android:tint="@color/colorGrayDark" />
-            </FrameLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/textInputLayout2"
@@ -50,16 +37,16 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fl_finding_image">
+                app:layout_constraintTop_toBottomOf="@+id/iv_finding">
 
                 <EditText
-                    android:id="@+id/tv_finding_name"
+                    android:id="@+id/et_finding_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:hint="@string/finding_name"/>
+                    android:hint="@string/finding_name" />
 
             </android.support.design.widget.TextInputLayout>
 

@@ -10,6 +10,7 @@ import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.models.Finding
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dialog_finding_details.*
 
 /**
@@ -24,6 +25,7 @@ class DialogFindingDetails: DialogFragment() {
     private var mFinding: Finding? = null
     private var mFindingItemRef: DatabaseReference? = null
     private var mFindingRefListener: ValueEventListener? = null
+    private var mToolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +38,11 @@ class DialogFindingDetails: DialogFragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        val toolbar = toolbar as Toolbar
+        mToolbar = toolbar as Toolbar
 
-        toolbar.title = "Finding title"
+        mToolbar?.title = "Finding title"
 
-        toolbar.let {
+        mToolbar.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
 
             val actionBar = (activity as AppCompatActivity).supportActionBar
@@ -74,8 +76,13 @@ class DialogFindingDetails: DialogFragment() {
     }
 
     private fun updateFields(){
+        mToolbar?.title = mFinding?.name
         iv_finding.setImageResource(R.mipmap.ic_launcher)
         tv_finding_name?.text = mFinding?.name
+        tv_finding_description?.text = mFinding?.description
+        if(mFinding?.imageUrl != ""){
+            Picasso.with(activity).load(mFinding?.imageUrl).into(iv_finding)
+        }
     }
 
 

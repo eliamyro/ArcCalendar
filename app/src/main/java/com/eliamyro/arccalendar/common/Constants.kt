@@ -51,4 +51,6 @@ const val DELETE_FINDING_DIALOG: String = "delete_finding_dialog"
 const val DELETE_WORK_DIALOG: String = "delete_work_dialog"
 const val DELETE_ALL_LOCATIONS_DIALOG: String = "delete_all_locations_dialog"
 const val DELETE_WORK_LOCATION_DIALOG: String = "delete_work_location_dialog"
+const val IMAGE_PICKER_DIALOG: String = "image_picker_dialog"
+
 

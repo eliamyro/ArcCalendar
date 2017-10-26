@@ -1,13 +1,13 @@
 package com.eliamyro.arccalendar.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import com.eliamyro.arccalendar.R
+import com.eliamyro.arccalendar.activities.ActivitySearch
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_EXCAVATION_LISTS
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
@@ -35,6 +35,11 @@ class FragmentExcavationsList : Fragment() {
     private var mAdapter: FirebaseRecyclerAdapter<Excavation, ExcavationHolder>? = null
     private var mCallbackListener: ClickCallback? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_excavations_list, container, false)
@@ -76,6 +81,24 @@ class FragmentExcavationsList : Fragment() {
         } else {
             throw RuntimeException(context!!.toString() + " must implement ClickCallback")
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_excavations_list, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when(item?.itemId){
+            R.id.action_search -> {
+                val intent = Intent(activity, ActivitySearch::class.java)
+                startActivity(intent)
+            }
+            else -> false
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDetach() {

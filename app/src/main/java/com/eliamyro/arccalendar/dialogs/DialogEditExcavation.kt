@@ -92,6 +92,7 @@ class DialogEditExcavation : DialogFragment(), Views {
 
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.clear()
         inflater?.inflate(R.menu.menu_edit_excavation, menu)
 
         menu?.findItem(R.id.action_save_edit_dialog_changes)?.isVisible = mState == State.VISIBLE

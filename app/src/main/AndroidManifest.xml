@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eliamyro.arccalendar">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".ArcApplication"
@@ -30,7 +31,8 @@
             android:name=".activities.ActivityWorkDetails"
             android:label="@string/title_activity_work_tabs"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ActivityFindingsList"/>
+        <activity android:name=".activities.ActivityFindingsList" />
+        <activity android:name=".activities.ActivitySearch"></activity>
     </application>
 
 </manifest>

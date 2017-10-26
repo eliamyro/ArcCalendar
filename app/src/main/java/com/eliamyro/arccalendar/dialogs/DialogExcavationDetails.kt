@@ -86,6 +86,7 @@ class DialogExcavationDetails : DialogFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        menu?.clear()
         inflater?.inflate(R.menu.menu_details, menu)
         return super.onCreateOptionsMenu(menu, inflater)
     }

@@ -6,14 +6,17 @@ import android.os.Parcelable
 /**
  * Created by Elias Myronidis on 29/9/17.
  */
-data class Finding(val name: String = "", val image: String = ""): Parcelable {
+data class Finding(var name: String = "", var description: String = "", var imageUrl: String = ""): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
-            parcel.readString())
+            parcel.readString(),
+            parcel.readString()
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
-        parcel.writeString(image)
+        parcel.writeString(description)
+        parcel.writeString(imageUrl)
     }
 
     override fun describeContents(): Int {

@@ -25,6 +25,7 @@ class DialogWorkLocationDetails: DialogFragment() {
 
     private var mWorkLocationItemRef: DatabaseReference? = null
     private var mWorkLocationRefListener: ValueEventListener? = null
+    private var mToolbar: Toolbar? = null
 
     companion object {
         private val TAG: String = com.eliamyro.arccalendar.dialogs.DialogExcavationDetails::class.java.simpleName
@@ -42,11 +43,11 @@ class DialogWorkLocationDetails: DialogFragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        val toolbar = toolbar as Toolbar?
+        mToolbar = toolbar as Toolbar?
 
-        toolbar?.title = mWorkLocation?.location
+//        toolbar?.title = mWorkLocation?.location
 
-        toolbar?.let {
+        mToolbar?.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
 
             val actionBar = (activity as AppCompatActivity).supportActionBar
@@ -84,6 +85,7 @@ class DialogWorkLocationDetails: DialogFragment() {
     private fun updateFields(){
         tv_work_location?.text = mWorkLocation?.location
         tv_work_location_description?.text = mWorkLocation?.description
+        mToolbar?.title = mWorkLocation?.location
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

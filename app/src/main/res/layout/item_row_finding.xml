@@ -12,40 +12,53 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp">
 
-        <TextView
-            android:id="@+id/tv_finding_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+        <ImageView
+            android:id="@+id/iv_finding_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_finding_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_finding_image"
+            tools:layout_editor_absoluteY="16dp"
             tools:text="Finding name" />
 
         <View
             android:id="@+id/view"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/colorGrayLine"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_finding_name" />
-
-        <TextView
-            android:id="@+id/tv_finding_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="This is a finding image"
+            android:background="@color/colorGrayLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintStart_toEndOf="@+id/iv_finding_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_finding_name" />
+
+        <TextView
+            android:id="@+id/tv_finding_description"
+            android:layout_width="0dp"
+            android:layout_height="19dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_finding_image"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:text="This is a finding image" />
 
     </android.support.constraint.ConstraintLayout>
 
