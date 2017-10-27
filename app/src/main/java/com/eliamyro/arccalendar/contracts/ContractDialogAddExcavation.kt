@@ -1,8 +1,9 @@
 package com.eliamyro.arccalendar.contracts
 
 /**
- * Created by Elias Myronidis on 28/8/17.
- */
+* Created by Elias Myronidis on 28/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
 abstract class ContractDialogAddExcavation {
 
@@ -10,7 +11,5 @@ abstract class ContractDialogAddExcavation {
         fun addExcavation(): Boolean
     }
 
-    interface Views {
-
-    }
+    interface Views
 }

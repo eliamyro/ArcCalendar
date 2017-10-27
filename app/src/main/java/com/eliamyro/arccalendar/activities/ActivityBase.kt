@@ -1,16 +1,22 @@
 package com.eliamyro.arccalendar.activities
 
 import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import com.eliamyro.arccalendar.R
 
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
+
 abstract class ActivityBase : AppCompatActivity() {
 
-    private val TAG: String = ActivityBase::class.java.simpleName
+    companion object {
+        private val TAG: String = ActivityBase::class.java.simpleName
+    }
 
     var view: View? = null
 

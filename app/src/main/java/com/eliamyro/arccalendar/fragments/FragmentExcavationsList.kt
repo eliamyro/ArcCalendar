@@ -24,13 +24,11 @@ import kotlinx.android.synthetic.main.fragment_excavations_list.*
 import kotlinx.android.synthetic.main.item_row_excavation.view.*
 
 /**
- * Created by Elias Myronidis on 23/8/17.
- */
-class FragmentExcavationsList : Fragment() {
+* Created by Elias Myronidis on 23/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
-    companion object {
-        private val TAG: String = FragmentExcavationsList::class.java.simpleName
-    }
+class FragmentExcavationsList : Fragment() {
 
     private var mAdapter: FirebaseRecyclerAdapter<Excavation, ExcavationHolder>? = null
     private var mCallbackListener: ClickCallback? = null
@@ -95,7 +93,6 @@ class FragmentExcavationsList : Fragment() {
                 val intent = Intent(activity, ActivitySearch::class.java)
                 startActivity(intent)
             }
-            else -> false
         }
 
         return super.onOptionsItemSelected(item)

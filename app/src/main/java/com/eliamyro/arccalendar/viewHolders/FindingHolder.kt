@@ -7,8 +7,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_row_finding.view.*
 
 /**
- * Created by Elias Myronidis on 2/10/17.
- */
+* Created by Elias Myronidis on 2/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class FindingHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bindFindingView(finding: Finding){

@@ -1,12 +1,8 @@
 package com.eliamyro.arccalendar.common
 
-import android.content.Context
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.Toolbar
-import android.view.View
-import android.widget.Toast
 import com.eliamyro.arccalendar.R
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
@@ -14,6 +10,7 @@ import java.util.*
 
 /**
  * Created by Elias Myronidis on 29/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
  */
 
 inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
@@ -25,28 +22,28 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     transaction.commit()
 }
 
-fun Long.toStringDate(): String {
-    try {
-        val sdf = SimpleDateFormat("dd/MM/yyyy")
-        val netDate = Date(this)
-        return sdf.format(netDate)
-    } catch (ex: Exception) {
-        return ""
-    }
-}
+//fun Long.toStringDate(): String {
+//    try {
+//        val sdf = SimpleDateFormat("dd/MM/yyyy")
+//        val netDate = Date(this)
+//        return sdf.format(netDate)
+//    } catch (ex: Exception) {
+//        return ""
+//    }
+//}
 
-fun Context.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(this, message, length).show()
-}
+//fun Context.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
+//    Toast.makeText(this, message, length).show()
+//}
 
-fun Fragment.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
-    this.context.toast(message, length)
-}
+//fun Fragment.toast(message: String, length: Int = Toast.LENGTH_SHORT) {
+//    this.context.toast(message, length)
+//}
 
-fun View.getDate(date: String): String {
+fun getDate(date: String): String {
     var timestamp: Timestamp? = null
     try {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.getDefault())
         val parsedDate = dateFormat.parse(date)
         timestamp = Timestamp(parsedDate.time)
     } catch (e: Exception) { //this generic but you can control another types of exception
@@ -59,14 +56,14 @@ fun View.getDate(date: String): String {
 
 }
 
-fun Toolbar.setDateToToolbar(date: String){
+fun Toolbar.setDateToToolbar(date: String) {
     this.title = getDate(date)
 }
 
-fun String.formatDate(): String{
+fun String.formatDate(): String {
     var timestamp: Timestamp? = null
     try {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.getDefault())
         val parsedDate = dateFormat.parse(this)
         timestamp = Timestamp(parsedDate.time)
     } catch (e: Exception) { //this generic but you can control another types of exception
@@ -78,10 +75,10 @@ fun String.formatDate(): String{
     return sFormat.format(timestamp)
 }
 
-fun String.toTimestamp(): String{
+fun String.toTimestamp(): String {
     var timestamp: Timestamp? = null
     try {
-        val dateFormat = SimpleDateFormat("dd MMMM yyy")
+        val dateFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
         val parsedDate = dateFormat.parse(this)
         timestamp = Timestamp(parsedDate.time)
     } catch (e: Exception) { //this generic but you can control another types of exception

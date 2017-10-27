@@ -1,7 +1,6 @@
 package com.eliamyro.arccalendar.dialogs
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -23,10 +22,11 @@ import com.eliamyro.arccalendar.contracts.ContractDialogAddFinding
 import com.eliamyro.arccalendar.models.Finding
 import com.eliamyro.arccalendar.presenters.PresenterDialogAddFinding
 
-
 /**
- * Created by Elias Myronidis on 2/10/17.
+ * Created by Elias Myronidis on 24/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
  */
+
 class DialogAddFinding : DialogFragment(), ContractDialogAddFinding.Views {
 
     companion object {

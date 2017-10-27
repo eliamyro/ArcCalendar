@@ -6,12 +6,12 @@ import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.listeners.ClickCallback
 
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
+
 class ActivityExcavationsList : ActivityBase(), ClickCallback {
-
-    companion object {
-        private val TAG: String = ActivityExcavationsList::class.java.simpleName
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

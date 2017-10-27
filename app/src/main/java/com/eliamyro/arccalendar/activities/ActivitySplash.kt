@@ -6,10 +6,17 @@ import android.os.Handler
 import android.view.View
 import com.eliamyro.arccalendar.R
 
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
+
 class ActivitySplash : ActivityBase() {
 
-    // Time to pass before start the next activity.
-    private val SPLASH_DISPLAY_LENGTH: Long = 3000
+    companion object {
+        // Time to pass before start the next activity.
+        private val SPLASH_DISPLAY_LENGTH: Long = 3000
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

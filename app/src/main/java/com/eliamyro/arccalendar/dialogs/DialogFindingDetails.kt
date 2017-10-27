@@ -14,8 +14,10 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.dialog_finding_details.*
 
 /**
- * Created by Elias Myronidis on 3/10/17.
- */
+* Created by Elias Myronidis on 3/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogFindingDetails : DialogFragment() {
 
     private val mExcavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }

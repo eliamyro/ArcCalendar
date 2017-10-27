@@ -6,8 +6,10 @@ import kotlin.collections.ArrayList
 
 
 /**
- * Created by Elias Myronidis on 4/9/17.
- */
+* Created by Elias Myronidis on 4/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 data class Work(val workDate: String = "", val description: String = "", val directorsList: List<String> = ArrayList(),
                 val archaeologistsList: List<String> = ArrayList(),
                 val studentsList: List<String> = ArrayList()) : Parcelable {

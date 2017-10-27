@@ -14,8 +14,10 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.dialog_work_location_details.*
 
 /**
- * Created by Elias Myronidis on 16/10/17.
- */
+* Created by Elias Myronidis on 16/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogWorkLocationDetails: DialogFragment() {
 
     var mWorkLocation: WorkLocation? = null
@@ -38,7 +40,6 @@ class DialogWorkLocationDetails: DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // TODO: Change the layout
         return inflater?.inflate(R.layout.dialog_work_location_details, container, false)
     }
 
@@ -61,10 +62,10 @@ class DialogWorkLocationDetails: DialogFragment() {
         updateFields()
 
         // Load the details of the excavation item.
-        loadWorkLocationDetails(mWorkLocationItemId)
+        loadWorkLocationDetails()
     }
 
-    private fun loadWorkLocationDetails(itemId: String){
+    private fun loadWorkLocationDetails(){
         mWorkLocationItemRef = FirebaseDatabase.getInstance().reference.child(FIREBASE_LOCATION_WORK_LOCATIONS + "/" + mExcavationItemId
         + "/" + mWorkItemId + "/" + mWorkLocationItemId)
         mWorkLocationRefListener = mWorkLocationItemRef?.addValueEventListener(object : ValueEventListener {

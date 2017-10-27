@@ -7,11 +7,12 @@ import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_LOCATION_ITEM_ID
 import com.eliamyro.arccalendar.fragments.FragmentFindingsList
 
-class ActivityFindingsList : ActivityBase() {
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
 
-    companion object {
-        private val TAG: String = ActivityFindingsList::class.java.simpleName
-    }
+class ActivityFindingsList : ActivityBase() {
 
     private val excavationItemId: String by lazy { intent.getStringExtra(KEY_EXCAVATION_ITEM_ID) }
     private val workItemId: String by lazy { intent.getStringExtra(KEY_WORK_ITEM_ID) }
@@ -22,7 +23,6 @@ class ActivityFindingsList : ActivityBase() {
         setContentView(R.layout.activity_findings_list)
 
         configureToolbar(true)
-
 
         val fragment = supportFragmentManager.findFragmentById(R.id.container_finding_lists) as FragmentFindingsList
         val bundle = Bundle()

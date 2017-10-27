@@ -4,8 +4,10 @@ import android.widget.ImageView
 import com.eliamyro.arccalendar.models.Finding
 
 /**
- * Created by Elias Myronidis on 24/10/17.
- */
+* Created by Elias Myronidis on 24/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 abstract class ContractDialogAddFinding {
 
     interface Actions {
@@ -13,7 +15,5 @@ abstract class ContractDialogAddFinding {
                         excavationItemId: String, workItemId: String, workLocationItemId: String): Boolean
     }
 
-    interface Views {
-
-    }
+    interface Views
 }

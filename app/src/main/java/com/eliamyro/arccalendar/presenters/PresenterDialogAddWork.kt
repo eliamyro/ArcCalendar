@@ -8,11 +8,12 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
 
 /**
- * Created by Elias Myronidis on 6/9/17.
- */
+* Created by Elias Myronidis on 6/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogAddWork(private val mView: Views): ContractDialogAddWork.Actions, AnkoLogger {
 
     override fun addWork(excavationId: String, work: Work): Boolean {

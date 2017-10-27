@@ -6,8 +6,10 @@ import com.eliamyro.arccalendar.models.Excavation
 import kotlinx.android.synthetic.main.item_row_excavation.view.*
 
 /**
- * Created by Elias Myronidis on 25/8/17.
- */
+* Created by Elias Myronidis on 25/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class ExcavationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bindExcavationView(excavation: Excavation) = with(itemView){
@@ -15,5 +17,4 @@ class ExcavationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         tv_organisation_value.text = excavation.organisation
         tv_description.text = excavation.description
     }
-
 }

@@ -40,4 +40,5 @@
     <string name="e_g_east_zone_a1">π.χ. Ανατολική Ζώνη ΑΝ1α</string>
     <string name="add_new_location">Προσθήκη τοποθεσίας</string>
     <string name="finding_name">Ονομασία ευρήματος</string>
+    <string name="delete_all_locations">Διαγραφή όλων των τοποθεσιών?</string>
 </resources>

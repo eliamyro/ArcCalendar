@@ -11,11 +11,14 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.dialog_add_excavation.*
 
 /**
- * Created by Elias Myronidis on 28/8/17.
- */
+* Created by Elias Myronidis on 28/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogAddExcavation(private val mView: Views) : ContractDialogAddExcavation.Actions{
 
     override fun addExcavation(): Boolean {
+
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
         val excavationName: String = (mView as DialogAddExcavation).et_excavation_place.text.toString()
         val organisation: String = mView.et_organisation.text.toString()

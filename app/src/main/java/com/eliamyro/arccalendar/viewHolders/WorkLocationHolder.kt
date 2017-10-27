@@ -5,8 +5,10 @@ import com.eliamyro.arccalendar.models.WorkLocation
 import kotlinx.android.synthetic.main.item_row_work_location.view.*
 
 /**
- * Created by Elias Myronidis on 26/9/17.
- */
+* Created by Elias Myronidis on 26/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class WorkLocationHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
     fun bindWorkLocation(workLocation: WorkLocation){

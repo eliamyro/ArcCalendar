@@ -18,8 +18,10 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogEditExcavation
 import kotlinx.android.synthetic.main.dialog_add_excavation.*
 
 /**
- * Created by Elias Myronidis on 28/8/17.
- */
+* Created by Elias Myronidis on 28/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogEditExcavation : DialogFragment(), Views {
 
     private val mExcavation: Excavation by lazy { arguments.getParcelable<Excavation>(KEY_EXCAVATION) }
@@ -52,7 +54,7 @@ class DialogEditExcavation : DialogFragment(), Views {
         toolbar?.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
 
-            var actionBar = (activity as AppCompatActivity).supportActionBar
+            val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(true)
             actionBar?.setHomeAsUpIndicator(R.drawable.ic_action_back)
         }
@@ -63,15 +65,10 @@ class DialogEditExcavation : DialogFragment(), Views {
         et_organisation.setText(mExcavation.organisation)
         et_description.setText(mExcavation.description)
 
-
         val textWatcher = object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
+            override fun afterTextChanged(p0: Editable?) { }
 
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 mState = if ((mExcavation.place == et_excavation_place.text.toString())
@@ -111,9 +108,7 @@ class DialogEditExcavation : DialogFragment(), Views {
                 } else {
                     Log.d(TAG, "Update was unsuccessful.")
                 }
-
             }
-
         }
         return super.onOptionsItemSelected(item)
     }

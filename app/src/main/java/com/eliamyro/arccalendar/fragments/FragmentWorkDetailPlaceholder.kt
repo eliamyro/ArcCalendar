@@ -6,8 +6,10 @@ import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
 
 /**
- * Created by Elias Myronidis on 16/9/17.
- */
+* Created by Elias Myronidis on 16/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class FragmentWorkDetailPlaceholder : Fragment() {
 
     companion object {

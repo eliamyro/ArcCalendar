@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
-import android.util.Log
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteExcavation
@@ -13,16 +12,14 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteExcavation
 import kotlinx.android.synthetic.main.dialog_information.view.*
 
 /**
- * Created by Elias Myronidis on 29/8/17.
- */
+* Created by Elias Myronidis on 29/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogDeleteExcavation : DialogFragment(), Views {
 
     init {
         this.isCancelable = false
-    }
-
-    companion object {
-        private val TAG: String = DialogDeleteExcavation::class.java.simpleName
     }
 
     private val mPresenter: ContractDialogDeleteExcavation.Actions by lazy { PresenterDialogDeleteExcavation() }

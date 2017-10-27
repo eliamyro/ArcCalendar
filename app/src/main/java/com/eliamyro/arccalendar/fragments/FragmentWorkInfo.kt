@@ -2,7 +2,6 @@ package com.eliamyro.arccalendar.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
@@ -15,13 +14,11 @@ import kotlinx.android.synthetic.main.activity_work_tabs.*
 import kotlinx.android.synthetic.main.fragment_work_info.*
 
 /**
- * Created by Elias Myronidis on 19/9/17.
- */
-class FragmentWorkInfo : Fragment(), ContractFragmentWorkInfo.Views {
+* Created by Elias Myronidis on 19/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
-    companion object {
-        private val TAG: String = FragmentWorkInfo::class.java.simpleName
-    }
+class FragmentWorkInfo : Fragment(), ContractFragmentWorkInfo.Views {
 
     private val excavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private val workItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }

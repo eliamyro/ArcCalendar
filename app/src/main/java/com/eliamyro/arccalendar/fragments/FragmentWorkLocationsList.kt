@@ -8,14 +8,11 @@ import android.util.Log
 import android.view.*
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
-import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations
-import com.eliamyro.arccalendar.contracts.ContractDialogDeleteAllLocations.Views
 import com.eliamyro.arccalendar.dialogs.DialogAddWorkLocation
 import com.eliamyro.arccalendar.dialogs.DialogDeleteAllLocations
 import com.eliamyro.arccalendar.dialogs.DialogWorkLocationDetails
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.WorkLocation
-import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteAllLocations
 import com.eliamyro.arccalendar.viewHolders.WorkLocationHolder
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.DatabaseReference
@@ -24,8 +21,10 @@ import kotlinx.android.synthetic.main.fragment_work_locations.*
 import kotlinx.android.synthetic.main.item_row_work_location.view.*
 
 /**
- * Created by Elias Myronidis on 19/9/17.
- */
+* Created by Elias Myronidis on 19/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class FragmentWorkLocationsList : Fragment() {
 
     companion object {

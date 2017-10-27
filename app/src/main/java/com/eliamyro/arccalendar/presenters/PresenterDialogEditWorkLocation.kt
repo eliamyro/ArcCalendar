@@ -10,12 +10,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 /**
- * Created by Elias Myronidis on 23/10/17.
- */
+* Created by Elias Myronidis on 23/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogEditWorkLocation(val mView: Views): Actions {
     override fun editWorkLocation(excavationItemId: String, workItemId: String,
                                   workLocationItemId: String, workLocation: WorkLocation): Boolean {
-        var isUpdateSuccessful: Boolean = true
+        var isUpdateSuccessful = true
 
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
 

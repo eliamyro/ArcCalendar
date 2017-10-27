@@ -14,9 +14,9 @@ import com.google.firebase.database.*
 
 
 /**
- * Created by Elias Myronidis on 30/8/17.
- */
-
+* Created by Elias Myronidis on 30/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
 class DialogExcavationDetails : DialogFragment() {
 
@@ -25,10 +25,6 @@ class DialogExcavationDetails : DialogFragment() {
 
     private var mExcavationItemRef: DatabaseReference? = null
     private var mExcavationRefListener: ValueEventListener? = null
-
-    companion object {
-        private val TAG: String = com.eliamyro.arccalendar.dialogs.DialogExcavationDetails::class.java.simpleName
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

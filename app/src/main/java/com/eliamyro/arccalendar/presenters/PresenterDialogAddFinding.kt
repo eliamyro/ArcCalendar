@@ -1,8 +1,6 @@
 package com.eliamyro.arccalendar.presenters
 
 import android.graphics.Bitmap
-import android.net.Uri
-import android.util.Log
 import android.widget.ImageView
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_FINDINGS
 import com.eliamyro.arccalendar.contracts.ContractDialogAddFinding.Actions
@@ -13,17 +11,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
-import org.jetbrains.anko.doAsync
 import java.io.ByteArrayOutputStream
 
 /**
- * Created by Elias Myronidis on 24/10/17.
- */
-class PresenterDialogAddFinding(val mView: Views) : Actions {
+* Created by Elias Myronidis on 24/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
-    companion object {
-        private val TAG: String = PresenterDialogAddFinding::class.java.simpleName
-    }
+class PresenterDialogAddFinding(val mView: Views) : Actions {
 
     override fun saveFinding(image: ImageView, hasImage: Boolean, finding: Finding,
                              excavationItemId: String, workItemId: String, workLocationItemId: String): Boolean {
@@ -62,9 +57,5 @@ class PresenterDialogAddFinding(val mView: Views) : Actions {
             reference.updateChildren(updatedItemToAddMap)
         }
         return true
-    }
-
-    private fun saveImage(findingKey: String, image: ImageView, finding: Finding) {
-
     }
 }

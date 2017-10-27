@@ -11,16 +11,13 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogAddExcavation
 import kotlinx.android.synthetic.main.dialog_add_excavation.*
 
 /**
- * Created by Elias Myronidis on 24/8/17.
- */
+* Created by Elias Myronidis on 24/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogAddExcavation : DialogFragment(), ContractDialogAddExcavation.Views {
 
-    companion object {
-        private val TAG: String = DialogAddExcavation::class.java.simpleName
-    }
-
     private val mPresenter: ContractDialogAddExcavation.Actions by lazy { PresenterDialogAddExcavation(this) }
-
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.dialog_add_excavation, container, false)

@@ -5,12 +5,14 @@ import com.eliamyro.arccalendar.models.Work
 import com.google.firebase.database.*
 
 /**
- * Created by Elias Myronidis on 21/9/17.
- */
+* Created by Elias Myronidis on 21/9/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterFragmentWorkInfo(private val mView: ContractFragmentWorkInfo.Views): ContractFragmentWorkInfo.Actions {
 
-    var refListener: ValueEventListener? = null
-    var mReference: DatabaseReference? = null
+    private var refListener: ValueEventListener? = null
+    private var mReference: DatabaseReference? = null
 
     override fun destroyValueEventListener() {
         if (refListener != null){

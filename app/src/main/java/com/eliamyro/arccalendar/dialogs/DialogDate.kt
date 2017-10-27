@@ -4,25 +4,21 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.util.Log
 import android.widget.DatePicker
 import java.sql.Timestamp
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by Elias Myronidis on 9/10/17.
- */
-class DialogDate: DialogFragment(), DatePickerDialog.OnDateSetListener{
+* Created by Elias Myronidis on 9/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
 
-    companion object {
-        private val TAG: String = DialogDate::class.java.simpleName
-    }
+class DialogDate: DialogFragment(), DatePickerDialog.OnDateSetListener{
 
     private var callback: DateSetListener? = null
 
     interface DateSetListener {
-        fun setDate(date: Timestamp)
+        fun setDate(timestamp: Timestamp)
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {

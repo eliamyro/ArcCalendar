@@ -12,15 +12,13 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteWork
 import kotlinx.android.synthetic.main.dialog_information.view.*
 
 /**
- * Created by Elias Myronidis on 9/10/17.
- */
+* Created by Elias Myronidis on 9/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogDeleteWork: DialogFragment(), ContractDialogDeleteWork.Views {
     init {
         this.isCancelable = false
-    }
-
-    companion object {
-        private val TAG: String = DialogDeleteWork::class.java.simpleName
     }
 
     private val mPresenter: ContractDialogDeleteWork.Actions by lazy { PresenterDialogDeleteWork() }

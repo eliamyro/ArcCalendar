@@ -2,7 +2,6 @@ package com.eliamyro.arccalendar.activities
 
 import android.content.Intent
 import android.support.design.widget.TabLayout
-
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
@@ -10,15 +9,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteWork
 import com.eliamyro.arccalendar.dialogs.DialogDeleteWork
 import com.eliamyro.arccalendar.fragments.FragmentWorkDetailPlaceholder
 import com.eliamyro.arccalendar.listeners.ClickCallback
-import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteWork
 import kotlinx.android.synthetic.main.activity_work_tabs.*
+
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
 
 class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteWork.Views {
 
@@ -26,16 +28,7 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteW
         private val TAG: String = ActivityWorkDetails::class.java.simpleName
     }
 
-    /**
-     * The [android.support.v4.view.PagerAdapter] that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * [android.support.v4.app.FragmentStatePagerAdapter].
-     */
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-
     private val mExcavationItemId: String by lazy { intent.getStringExtra(KEY_EXCAVATION_ITEM_ID)}
     private val mWorkItemId: String by lazy { intent.getStringExtra(KEY_WORK_ITEM_ID) }
 
@@ -119,8 +112,9 @@ class ActivityWorkDetails : ActivityBase(), ClickCallback, ContractDialogDeleteW
             when (position) {
                 0 -> return getString(R.string.info)
                 1 -> return getString(R.string.locations)
-                else -> return ""
             }
+
+            return ""
         }
     }
 

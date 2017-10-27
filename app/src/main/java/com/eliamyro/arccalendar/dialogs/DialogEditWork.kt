@@ -18,8 +18,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by Elias Myronidis on 11/10/17.
- */
+* Created by Elias Myronidis on 11/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
     override fun setDate(timestamp: Timestamp) {
         val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
@@ -32,9 +34,6 @@ class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
     private val mExcavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private val mWorkItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }
     private val mPresenter: ContractDialogEditWork.Actions by lazy { PresenterDialogEditWork(this) }
-//    private var mState: State? = null
-
-//    private enum class State {VISIBLE, HIDDEN }
 
     companion object {
         private val TAG: String = DialogEditWork::class.java.simpleName
@@ -43,8 +42,6 @@ class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-//        mState = State.HIDDEN
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,11 +56,10 @@ class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
         toolbar?.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
 
-            var actionBar = (activity as AppCompatActivity).supportActionBar
+            val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(true)
             actionBar?.setHomeAsUpIndicator(R.drawable.ic_action_back)
         }
-
 
         tv_work_date.text = mWork.workDate.formatDate()
         tg_work_directors_list.setTags(mWork.directorsList)
@@ -72,7 +68,6 @@ class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
         et_work_description.setText(mWork.description)
 
         tv_work_date.setOnClickListener { showDateDialog() }
-
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
@@ -81,11 +76,11 @@ class DialogEditWork: DialogFragment(), DialogDate.DateSetListener, Views {
         inflater?.inflate(R.menu.menu_edit_work, menu)
         super.onPrepareOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_save_edit_work -> {
-//                val workDate: String = (tv_work_date.text.toString()).toTimestamp()
-                val workDate: String = "${tv_work_date.text.toString()}".toTimestamp()
+                val workDate: String = (tv_work_date.text.toString()).toTimestamp()
                 Log.d(TAG, workDate)
                 val directorsList: List<String> = tg_work_directors_list.tags.asList()
                 val archaeologistsList: List<String> = tg_work_archaeologists_list.tags.asList()

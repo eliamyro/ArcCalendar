@@ -8,8 +8,10 @@ import com.eliamyro.arccalendar.contracts.ContractDialogDeleteWorkLocation.Views
 import com.google.firebase.database.FirebaseDatabase
 
 /**
- * Created by Elias Myronidis on 17/10/17.
- */
+* Created by Elias Myronidis on 17/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogDeleteWorkLocation(val mView: Views): Actions {
 
     companion object {

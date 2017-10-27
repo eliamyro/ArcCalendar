@@ -6,9 +6,13 @@ import android.util.Log
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.common.KEY_WORK_ITEM_ID
-import com.eliamyro.arccalendar.common.toast
 import com.eliamyro.arccalendar.fragments.FragmentWorksList
 import com.eliamyro.arccalendar.listeners.ClickCallback
+
+/**
+ * Created by Elias Myronidis on 28/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+ */
 
 class ActivityWorksList : ActivityBase(), ClickCallback {
 

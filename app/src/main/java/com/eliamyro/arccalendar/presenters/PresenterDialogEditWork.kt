@@ -1,8 +1,6 @@
 package com.eliamyro.arccalendar.presenters
 
-import android.util.Log
 import com.eliamyro.arccalendar.common.*
-import com.eliamyro.arccalendar.contracts.ContractDialogEditWork
 import com.eliamyro.arccalendar.contracts.ContractDialogEditWork.Actions
 import com.eliamyro.arccalendar.contracts.ContractDialogEditWork.Views
 import com.eliamyro.arccalendar.models.Work
@@ -10,18 +8,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 /**
- * Created by Elias Myronidis on 16/10/17.
- */
+* Created by Elias Myronidis on 16/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogEditWork(val mView: Views) : Actions {
 
-    companion object {
-        private val TAG: String = PresenterDialogEditWork::class.java.simpleName
-    }
-
     override fun editWork(excavationItemId: String, workItemId: String, work: Work): Boolean {
-        Log.d(TAG, "Inside editWork")
-
-        var isUpdateSuccessful: Boolean = true
+        var isUpdateSuccessful = true
 
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
 

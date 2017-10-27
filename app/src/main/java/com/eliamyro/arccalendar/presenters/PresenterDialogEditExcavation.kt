@@ -12,8 +12,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 /**
- * Created by Elias Myronidis on 28/8/17.
- */
+* Created by Elias Myronidis on 28/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogEditExcavation(private val mView: Views) : Actions {
 
     companion object {
@@ -23,7 +25,7 @@ class PresenterDialogEditExcavation(private val mView: Views) : Actions {
     override fun editExcavation(excavationItemId: String, excavation: Excavation): Boolean {
         Log.d(TAG, "Inside editExcavation")
 
-        var isUpdateSuccessful: Boolean = true
+        var isUpdateSuccessful = true
 
         val reference: DatabaseReference = FirebaseDatabase.getInstance().reference
 

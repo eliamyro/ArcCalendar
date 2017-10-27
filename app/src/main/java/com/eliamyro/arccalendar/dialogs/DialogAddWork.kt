@@ -1,6 +1,5 @@
 package com.eliamyro.arccalendar.dialogs
 
-import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -8,8 +7,6 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.*
-import android.widget.CalendarView
-import android.widget.DatePicker
 import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.KEY_EXCAVATION_ITEM_ID
 import com.eliamyro.arccalendar.contracts.ContractDialogAddWork
@@ -17,23 +14,22 @@ import com.eliamyro.arccalendar.models.Work
 import com.eliamyro.arccalendar.presenters.PresenterDialogAddWork
 import kotlinx.android.synthetic.main.dialog_add_work.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.debug
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
- * Created by Elias Myronidis on 6/9/17.
+ * Created by Elias Myronidis on 24/8/17.
+ * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
  */
+
 class DialogAddWork : DialogFragment(), ContractDialogAddWork.Views, AnkoLogger, DialogDate.DateSetListener {
     private var workTimestamp: Timestamp? = null
 
     override fun setDate(timestamp: Timestamp) {
         workTimestamp = timestamp
         val sFormat = SimpleDateFormat("dd MMMM yyy", Locale.getDefault())
-
-        val date: String = sFormat.format(workTimestamp)
-        tv_work_date.setText(date)
+        tv_work_date.text = sFormat.format(workTimestamp)
     }
 
 

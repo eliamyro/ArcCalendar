@@ -12,15 +12,13 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogDeleteAllLocations
 import kotlinx.android.synthetic.main.dialog_information.view.*
 
 /**
- * Created by Elias Myronidis on 16/10/17.
- */
+* Created by Elias Myronidis on 16/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogDeleteAllLocations: DialogFragment(), ContractDialogDeleteAllLocations.Views {
     init {
         this.isCancelable = false
-    }
-
-    companion object {
-        private val TAG: String = DialogDeleteWork::class.java.simpleName
     }
 
     private val mPresenter: ContractDialogDeleteAllLocations.Actions by lazy { PresenterDialogDeleteAllLocations(this) }
@@ -33,7 +31,7 @@ class DialogDeleteAllLocations: DialogFragment(), ContractDialogDeleteAllLocatio
         val view = inflater.inflate(R.layout.dialog_information, null)
         builder.setView(view)
 
-        view.tv_message.text = "Delete all locations?"
+        view.tv_message.text = getString(R.string.delete_all_locations)
 
         builder.setNegativeButton(getString(R.string.cancel), { _, _ -> dismiss() })
         builder.setPositiveButton(getString(R.string.delete), { _, _ -> mPresenter.deleteAllLocations(mExcavationItemId, mWorkItemId)})

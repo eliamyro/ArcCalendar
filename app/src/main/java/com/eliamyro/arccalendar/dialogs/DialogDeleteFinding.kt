@@ -26,10 +26,6 @@ class DialogDeleteFinding: DialogFragment(), Views {
     private val mWorkLocationItemId: String by lazy { arguments.getString(KEY_WORK_LOCATION_ITEM_ID) }
     private val mFindingItemId: String by lazy { arguments.getString(KEY_FINDING_ITEM_ID) }
 
-    companion object {
-        private val TAG: String = DialogDeleteFinding::class.java.simpleName
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(activity)
         val inflater = activity.layoutInflater

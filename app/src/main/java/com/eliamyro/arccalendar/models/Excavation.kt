@@ -4,8 +4,10 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Created by Elias Myronidis on 24/8/17.
- */
+* Created by Elias Myronidis on 24/8/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 data class Excavation(val place: String = "", val organisation: String = "", val description: String = ""): Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),

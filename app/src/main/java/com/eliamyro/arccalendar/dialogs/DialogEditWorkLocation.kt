@@ -20,8 +20,10 @@ import com.eliamyro.arccalendar.presenters.PresenterDialogEditWorkLocation
 import kotlinx.android.synthetic.main.dialog_add_work_location.*
 
 /**
- * Created by Elias Myronidis on 23/10/17.
- */
+* Created by Elias Myronidis on 23/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class DialogEditWorkLocation: DialogFragment(), Views {
 
     private val mWorkLocation: WorkLocation by lazy { arguments.getParcelable<WorkLocation>(KEY_WORK_LOCATION) }
@@ -56,7 +58,7 @@ class DialogEditWorkLocation: DialogFragment(), Views {
         toolbar?.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
 
-            var actionBar = (activity as AppCompatActivity).supportActionBar
+            val actionBar = (activity as AppCompatActivity).supportActionBar
             actionBar?.setDisplayHomeAsUpEnabled(true)
             actionBar?.setHomeAsUpIndicator(R.drawable.ic_action_back)
         }

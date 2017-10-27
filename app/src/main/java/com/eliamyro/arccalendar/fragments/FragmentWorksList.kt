@@ -10,7 +10,6 @@ import com.eliamyro.arccalendar.R
 import com.eliamyro.arccalendar.common.*
 import com.eliamyro.arccalendar.dialogs.DialogAddWork
 import com.eliamyro.arccalendar.dialogs.DialogDeleteAllWorks
-import com.eliamyro.arccalendar.dialogs.DialogEditWork
 import com.eliamyro.arccalendar.listeners.ClickCallback
 import com.eliamyro.arccalendar.models.Work
 import com.eliamyro.arccalendar.viewHolders.WorkHolder
@@ -26,10 +25,6 @@ class FragmentWorksList : Fragment() {
     private val mExcavationId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private var mAdapter: FirebaseRecyclerAdapter<Work, WorkHolder>? = null
     private var mCallbackListener: ClickCallback? = null
-
-    companion object {
-        private val TAG: String = FragmentWorksList::class.java.simpleName
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

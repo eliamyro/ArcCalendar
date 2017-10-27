@@ -7,10 +7,11 @@ import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteWork
 import com.google.firebase.database.FirebaseDatabase
 
-
 /**
- * Created by Elias Myronidis on 9/10/17.
- */
+* Created by Elias Myronidis on 9/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogDeleteWork: ContractDialogDeleteWork.Actions {
 
     companion object {

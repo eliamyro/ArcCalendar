@@ -8,8 +8,10 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 /**
- * Created by Elias Myronidis on 4/10/17.
- */
+* Created by Elias Myronidis on 4/10/17.
+* LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
+*/
+
 class PresenterDialogDeleteFinding: Actions {
 
     companion object {
