@@ -31,7 +31,8 @@
             android:name=".activities.ActivityWorkDetails"
             android:label="@string/title_activity_work_tabs"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ActivityFindingsList" />
+        <activity android:name=".activities.ActivityFindingsList"
+            android:label="@string/findings_title"/>
         <activity android:name=".activities.ActivitySearch"></activity>
     </application>
 

@@ -40,6 +40,7 @@
     <string name="create_finding">Create finding</string>
     <string name="director">Excavation director</string>
     <string name="findings">FINDINGS</string>
+    <string name="findings_title">Findings</string>
     <string name="e_g_east_zone_a1">e.g. East Zone A1</string>
     <string name="add_new_location">Add new location</string>
     <string name="finding_name">Finding name</string>

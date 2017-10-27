@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.dialog_finding_details.*
 /**
  * Created by Elias Myronidis on 3/10/17.
  */
-class DialogFindingDetails: DialogFragment() {
+class DialogFindingDetails : DialogFragment() {
 
     private val mExcavationItemId: String by lazy { arguments.getString(KEY_EXCAVATION_ITEM_ID) }
     private val mWorkItemId: String by lazy { arguments.getString(KEY_WORK_ITEM_ID) }
@@ -39,8 +39,6 @@ class DialogFindingDetails: DialogFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         mToolbar = toolbar as Toolbar
-
-        mToolbar?.title = "Finding title"
 
         mToolbar.let {
             (activity as AppCompatActivity).setSupportActionBar(it)
@@ -75,13 +73,18 @@ class DialogFindingDetails: DialogFragment() {
         })
     }
 
-    private fun updateFields(){
-        mToolbar?.title = mFinding?.name
-        iv_finding.setImageResource(R.mipmap.ic_launcher)
-        tv_finding_name?.text = mFinding?.name
-        tv_finding_description?.text = mFinding?.description
-        if(mFinding?.imageUrl != ""){
-            Picasso.with(activity).load(mFinding?.imageUrl).into(iv_finding)
+    private fun updateFields() {
+
+        mFinding?.let {
+            with(it) {
+                mToolbar?.title = name
+                iv_finding.setImageResource(R.mipmap.ic_launcher)
+                tv_finding_name?.text = name
+                tv_finding_description?.text = description
+                if (imageUrl != "") {
+                    Picasso.with(activity).load(imageUrl).into(iv_finding)
+                }
+            }
         }
     }
 
@@ -93,7 +96,7 @@ class DialogFindingDetails: DialogFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
-        when(item?.itemId){
+        when (item?.itemId) {
             R.id.action_delete -> showDeleteFindingDialog()
             R.id.action_edit -> showEditFindingDialog()
         }
@@ -101,7 +104,7 @@ class DialogFindingDetails: DialogFragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showDeleteFindingDialog(){
+    private fun showDeleteFindingDialog() {
         val dialog = DialogDeleteFinding()
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
@@ -113,7 +116,7 @@ class DialogFindingDetails: DialogFragment() {
         dialog.show(fragmentManager, DELETE_FINDING_DIALOG)
     }
 
-    private fun showEditFindingDialog(){
+    private fun showEditFindingDialog() {
         val dialog = DialogEditFinding()
         val bundle = Bundle()
         bundle.putParcelable(KEY_FINDING, mFinding)

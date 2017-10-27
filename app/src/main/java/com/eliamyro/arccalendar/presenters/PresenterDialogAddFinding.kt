@@ -49,7 +49,7 @@ class PresenterDialogAddFinding(val mView: Views) : Actions {
             val baos = ByteArrayOutputStream()
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
             val data = baos.toByteArray()
-            val uploadTask: UploadTask = storageRef.child("$findingKey/$findingKey").putBytes(data)
+            val uploadTask: UploadTask = storageRef.child("images/$findingKey").putBytes(data)
             uploadTask.addOnSuccessListener { taskSnapshot ->
                 val uri = taskSnapshot.downloadUrl
                 val f = Finding(finding.name, finding.description, uri.toString())

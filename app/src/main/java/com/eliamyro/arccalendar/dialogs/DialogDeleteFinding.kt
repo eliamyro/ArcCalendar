@@ -38,12 +38,11 @@ class DialogDeleteFinding: DialogFragment(), Views {
 
         view.tv_message.text = getString(R.string.delete_finding)
 
-        val itemToDeletePath = "/$FIREBASE_LOCATION_FINDINGS/$mExcavationItemId/$mWorkItemId/$mWorkLocationItemId/$mFindingItemId"
+        val itemToDeletePath = "$FIREBASE_LOCATION_FINDINGS/$mExcavationItemId/$mWorkItemId/$mWorkLocationItemId/$mFindingItemId"
 
         builder.setNegativeButton(getString(R.string.cancel), { _, _ -> dismiss() })
-        builder.setPositiveButton(getString(R.string.delete), { _, _ -> mPresenter.deleteFinding(itemToDeletePath)})
+        builder.setPositiveButton(getString(R.string.delete), { _, _ -> mPresenter.deleteFinding(itemToDeletePath, mFindingItemId)})
 
         return builder.create()
     }
-
 }

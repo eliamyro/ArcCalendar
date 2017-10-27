@@ -5,7 +5,7 @@ package com.eliamyro.arccalendar.contracts
  */
 class ContractDialogDeleteFinding {
     interface Actions {
-        fun deleteFinding(itemToDeletePath: String)
+        fun deleteFinding(itemToDeletePath: String, findingItemId: String)
     }
 
     interface Views{

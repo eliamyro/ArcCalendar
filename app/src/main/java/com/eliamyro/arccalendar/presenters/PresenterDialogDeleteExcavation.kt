@@ -7,6 +7,7 @@ import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_FINDINGS
 import com.eliamyro.arccalendar.common.FIREBASE_LOCATION_WORK_LOCATIONS
 import com.eliamyro.arccalendar.contracts.ContractDialogDeleteExcavation.Actions
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 /**
  * Created by Elias Myronidis on 29/8/17.

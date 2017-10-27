@@ -36,6 +36,7 @@
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="menu_delete_all">Διαγραφή όλων</string>
     <string name="findings">ΕΥΡΗΜΑΤΑ</string>
+    <string name="findings_title">Ευρήματα</string>
     <string name="e_g_east_zone_a1">π.χ. Ανατολική Ζώνη ΑΝ1α</string>
     <string name="add_new_location">Προσθήκη τοποθεσίας</string>
     <string name="finding_name">Ονομασία ευρήματος</string>

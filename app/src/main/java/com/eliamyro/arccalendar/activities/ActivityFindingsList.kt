@@ -23,6 +23,7 @@ class ActivityFindingsList : ActivityBase() {
 
         configureToolbar(true)
 
+
         val fragment = supportFragmentManager.findFragmentById(R.id.container_finding_lists) as FragmentFindingsList
         val bundle = Bundle()
         bundle.putString(KEY_EXCAVATION_ITEM_ID, excavationItemId)
