@@ -17,11 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.ActivitySplash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".activities.ActivityExcavationsList" />
         <activity
@@ -31,9 +31,19 @@
             android:name=".activities.ActivityWorkDetails"
             android:label="@string/title_activity_work_tabs"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.ActivityFindingsList"
-            android:label="@string/findings_title"/>
-        <activity android:name=".activities.ActivitySearch"/>
+        <activity
+            android:name=".activities.ActivityFindingsList"
+            android:label="@string/findings_title" />
+        <activity
+            android:name=".activities.ActivitySearch"
+            android:label="@string/search" />
+        <activity android:name=".activities.ActivityAuthentication">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

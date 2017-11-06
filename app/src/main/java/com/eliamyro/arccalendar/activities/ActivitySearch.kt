@@ -2,6 +2,8 @@ package com.eliamyro.arccalendar.activities
 
 import android.os.Bundle
 import com.eliamyro.arccalendar.R
+import com.eliamyro.arccalendar.common.inTransaction
+import com.eliamyro.arccalendar.fragments.FragmentSearch
 
 /**
  * Created by Elias Myronidis on 28/8/17.
@@ -15,5 +17,8 @@ class ActivitySearch : ActivityBase() {
         setContentView(R.layout.activity_search)
 
         configureToolbar(true)
+
+        supportFragmentManager.inTransaction(false) { add(R.id.fragment_search_container, FragmentSearch()) }
     }
+
 }

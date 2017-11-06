@@ -9,4 +9,5 @@ interface ClickCallback {
 
     fun onItemSelected(excavationId: String = "", workId: String = "",
                        workLocationId: String = "")
+
 }

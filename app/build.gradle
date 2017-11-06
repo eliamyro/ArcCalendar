@@ -44,6 +44,8 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation "com.google.firebase:firebase-auth:$firebase_version"
+    implementation "com.google.android.gms:play-services-auth:$firebase_version"
 }
 
 apply plugin: 'com.google.gms.google-services'

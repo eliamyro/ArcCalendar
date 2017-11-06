@@ -113,7 +113,7 @@ class DialogExcavationDetails : DialogFragment() {
         bundle.putString(KEY_EXCAVATION_ITEM_ID, itemId)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
     override fun onDismiss(dialog: DialogInterface?) {

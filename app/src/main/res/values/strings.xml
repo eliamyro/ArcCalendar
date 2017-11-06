@@ -45,4 +45,6 @@
     <string name="add_new_location">Add new location</string>
     <string name="finding_name">Finding name</string>
     <string name="delete_all_locations">Delete all locations?</string>
+    <string name="edit_finding">Edit finding</string>
+    <string name="search">Search</string>
 </resources>

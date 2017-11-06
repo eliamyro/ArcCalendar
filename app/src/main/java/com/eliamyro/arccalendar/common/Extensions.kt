@@ -13,12 +13,14 @@ import java.util.*
  * LinkedIn: https://www.linkedin.com/in/eliasmyronidis/
  */
 
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+inline fun FragmentManager.inTransaction(addToBackStack: Boolean, func: FragmentTransaction.() -> Unit) {
     val transaction = beginTransaction()
     transaction.setTransition(android.support.v4.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
     transaction.setCustomAnimations(R.anim.right_in, R.anim.left_out, R.anim.left_in, R.anim.right_out)
     transaction.func()
-    transaction.addToBackStack(null)
+    if (addToBackStack) {
+        transaction.addToBackStack(null)
+    }
     transaction.commit()
 }
 

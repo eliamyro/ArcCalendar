@@ -76,7 +76,7 @@ class FragmentFindingsList : Fragment() {
         bundle.putParcelable(KEY_FINDING, finding)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
     private fun showAddFindingDialog() {
@@ -87,7 +87,7 @@ class FragmentFindingsList : Fragment() {
         bundle.putString(KEY_WORK_LOCATION_ITEM_ID, mWorkLocationItemId)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
 
     }
 }

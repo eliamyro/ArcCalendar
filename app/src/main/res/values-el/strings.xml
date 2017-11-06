@@ -41,4 +41,6 @@
     <string name="add_new_location">Προσθήκη τοποθεσίας</string>
     <string name="finding_name">Ονομασία ευρήματος</string>
     <string name="delete_all_locations">Διαγραφή όλων των τοποθεσιών?</string>
+    <string name="edit_finding">Επεξεργασία ευρήματος</string>
+    <string name="search">Αναζήτηση</string>
 </resources>

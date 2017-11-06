@@ -116,7 +116,7 @@ class FragmentWorksList : Fragment() {
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationId)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
     override fun onDestroy() {

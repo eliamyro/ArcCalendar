@@ -46,6 +46,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:importantForAutofill="noExcludeDescendants"
                     android:hint="@string/finding_name" />
 
             </android.support.design.widget.TextInputLayout>
@@ -67,6 +68,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|start"
                     android:hint="@string/description"
+                    android:importantForAutofill="noExcludeDescendants"
                     android:minLines="6" />
             </android.support.design.widget.TextInputLayout>
 

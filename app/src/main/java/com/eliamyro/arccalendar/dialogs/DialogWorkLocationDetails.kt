@@ -127,7 +127,7 @@ class DialogWorkLocationDetails: DialogFragment() {
         bundle.putString(KEY_WORK_LOCATION_ITEM_ID, mWorkLocationItemId)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
 
     }
 

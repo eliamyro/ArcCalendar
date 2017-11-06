@@ -106,7 +106,7 @@ class FragmentWorkLocationsList : Fragment() {
         bundle.putString(KEY_EXCAVATION_ITEM_ID, mExcavationItemId)
         bundle.putString(KEY_WORK_ITEM_ID, mWorkItemId)
         dialog.arguments = bundle
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
     private fun showDeleteAllLocationsDialog() {
@@ -130,7 +130,7 @@ class FragmentWorkLocationsList : Fragment() {
 
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction({ replace(android.R.id.content, dialog) })
+        fragmentManager.inTransaction(true, { replace(android.R.id.content, dialog) })
     }
 
     override fun onAttachFragment(childFragment: Fragment?) {

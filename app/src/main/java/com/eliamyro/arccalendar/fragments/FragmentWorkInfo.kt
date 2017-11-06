@@ -88,7 +88,7 @@ class FragmentWorkInfo : Fragment(), ContractFragmentWorkInfo.Views {
         bundle.putString(KEY_WORK_ITEM_ID, workItemId)
         bundle.putParcelable(KEY_WORK, mWork)
         dialog.arguments = bundle
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
 

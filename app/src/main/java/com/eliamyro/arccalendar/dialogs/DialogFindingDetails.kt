@@ -128,7 +128,7 @@ class DialogFindingDetails : DialogFragment() {
         bundle.putString(KEY_FINDING_ITEM_ID, mFindingItemId)
         dialog.arguments = bundle
 
-        fragmentManager.inTransaction { replace(android.R.id.content, dialog) }
+        fragmentManager.inTransaction(true) { replace(android.R.id.content, dialog) }
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
